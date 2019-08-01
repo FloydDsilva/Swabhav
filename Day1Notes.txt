@@ -1,0 +1,10 @@
+1)git init - make repository in git (used only once)
+2)git log - show files and commits 
+3)git add . - allocate snapshot memory
+4)git commit - adds the code into the snapshot and saves it
+5)git status - (red - not added, green - added) shows if files and if its modified by comparing current snapshot of that file with the last commited file snapshot
+6)git checkout 4ab3- (4 digit hashcode / master) moves header to the specified commit
+
+7)git remote add shortname URL - make short name of the github URL
+8)git remote -v - displays the remote access to github repositories
+9)git push shortname master - push the repository to cloud
