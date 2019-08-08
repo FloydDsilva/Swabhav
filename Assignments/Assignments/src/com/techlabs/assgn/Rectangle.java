@@ -1,4 +1,4 @@
-package com.techlabs.rectangle;
+package com.techlabs.assgn;
 
 public class Rectangle {
 	private int width;
@@ -8,7 +8,6 @@ public class Rectangle {
 	public void setWidth(int width) {
 		this.width=validate(width);
 	}
-	
 	
 	private int height;
 	public int getHeight() {
@@ -31,5 +30,4 @@ public class Rectangle {
 		int area=width*height;
 		return area;
 	}
-
 }
