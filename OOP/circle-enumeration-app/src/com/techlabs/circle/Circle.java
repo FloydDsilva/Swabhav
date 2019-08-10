@@ -4,10 +4,11 @@ public class Circle {
 	private final static float PI=3.142f;
 	private final float radius;
 	private final ColorCategory borderColor;
-	private BorderStyle borderStlye=BorderStyle.SINGLE;
+	private final BorderStyle borderStlye;
 	
 
 	public Circle(float radius, ColorCategory borderColor) {
+		this.borderStlye=BorderStyle.SINGLE;
 		this.radius = radius;
 		this.borderColor = borderColor;
 	}
