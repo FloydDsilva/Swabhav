@@ -3,18 +3,20 @@ package com.techlabs.account;
 import java.io.Serializable;
 
 public class Account implements Serializable{
+	private static final long serialVersionUID = 2L;
 	private final int accountNo;
 	private final String name;
 	private double balance;
-	public Account(int accountNo, String name, double balance) {
-		super();
+	private final String desc;
+	public Account(int accountNo, String name, double balance,String desc) {
 		this.accountNo = accountNo;
 		this.name = name;
 		this.balance = balance;
+		this.desc=desc;
 	}
 	
 	public Account(int accountNo, String name) {
-		this(accountNo,name,500);
+		this(accountNo,name,500,"Savings");
 	}
 	
 	public void deposit(double ammount) {
@@ -38,5 +40,11 @@ public class Account implements Serializable{
 	public double getBalance() {
 		return balance;
 	}
+
+	public String getDescription() {
+		return desc;
+	}
+	
+	
 	
 }
