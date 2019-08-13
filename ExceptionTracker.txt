@@ -1,2 +1,3 @@
 com.techlabs.rectangle.test.RectangleTest.main - java.lang.NullPointerException
 - java.io.IOException
+- java.io.InvalidClassException
