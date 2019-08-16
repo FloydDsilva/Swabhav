@@ -34,6 +34,7 @@ public class ContactUI {
 		  for(Contact contact:contacts) { System.out.println(contact); }
 		//System.out.println(contacts.get(0));
 	}
+	
 	public int inputChoice() {
 		BufferedReader bf=new BufferedReader(new InputStreamReader(System.in));
 		int choice = 0;
@@ -48,6 +49,28 @@ public class ContactUI {
 		}
 		return choice;
 	}
+	public String inputSearchString() {
+		BufferedReader bf=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter Name to search:");
+		String searchString="";
+		try {
+			searchString=bf.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return searchString;
+	}
+	public void searchContacts() {
+		String searchString=inputSearchString();
+		ArrayList<Contact> searchedContacts=new ArrayList<Contact>();
+		searchedContacts=new ContactStore().getSearchedContacts(searchString);
+		displaySearchedContacts(searchedContacts);
+	}
+	public void displaySearchedContacts(ArrayList<Contact> searchedContacts) {
+		  for(Contact contact:searchedContacts) { System.out.println(contact); }
+		//System.out.println(contacts.get(0));
+	}
 	public void start() {
 		int choice;
 		do {
@@ -59,12 +82,17 @@ public class ContactUI {
 			if(choice==2) {
 				displayContacts();
 			}
-		}while(choice!=3);
+			if(choice==3) {
+				searchContacts();
+			}
+		}while(choice!=4);
 	}
+	
 	public void prompt() {
-		System.out.println("Enter 1 to add Number");
-		System.out.println("Enter 2 to display number");
-		System.out.println("Enter 3 to Exit!");
+		System.out.println("Enter 1 to add Contact");
+		System.out.println("Enter 2 to display Contacts");
+		System.out.println("Enter 3 to Search");
+		System.out.println("Enter 4 to Exit!");
 		System.out.println("Enter your Choice:");
 	}
 }

@@ -14,6 +14,10 @@ public class ContactStore {
 	private static ArrayList<Contact> contacts=new ArrayList<Contact>();
 	
 	public void addContact(Contact contact) {
+		File file=new File("resources\\contacts.ser");
+		if(file.length()!=0) {
+			contacts=loadContacts();
+		}
 		contacts.add(contact);
 		saveContacts(contacts);
 	}
@@ -58,6 +62,16 @@ public class ContactStore {
 			e.printStackTrace();
 		}
 		return contacts;
+	}
+	public ArrayList<Contact> getSearchedContacts(String searchString) {
+		ArrayList<Contact> searchedContacts=new ArrayList<Contact>();
+		ArrayList<Contact> allContacts=getContacts();
+		for(Contact contact:allContacts) {
+			if(searchString.equalsIgnoreCase(contact.getFirstName()) || searchString.equalsIgnoreCase(contact.getLastName())) {
+				searchedContacts.add(contact);
+			}
+		}
+		return searchedContacts;
 	}
 	
 }

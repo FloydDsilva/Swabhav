@@ -39,4 +39,19 @@ public class Account implements Serializable{
 		return balance;
 	}
 	
+	@Override
+	public String toString() {
+		String parent = super.toString();
+		return "no:"+getAccountNo()+"\nname:"+getName()+"\nbalance:"+getBalance()+"\nprevious code:"+parent;
+		
+	}
+	@Override
+	public boolean equals(Object obj) {
+		boolean equal=false;
+		Account account=(Account)obj;
+		if(accountNo==account.accountNo) {
+			equal=true;
+		}
+		return equal;
+	}
 }
