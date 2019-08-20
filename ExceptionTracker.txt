@@ -1,3 +1,7 @@
 com.techlabs.rectangle.test.RectangleTest.main - java.lang.NullPointerException
 - java.io.IOException
 - java.io.InvalidClassException
+- java.lang.ArrayIndexOutOfBoundsException
+- java.lang.ArithmeticException: / by zero
+-  java.lang.NumberFormatException
+- java.lang.StackOverflowError
