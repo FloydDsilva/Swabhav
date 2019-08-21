@@ -1,6 +1,6 @@
 package com.techlabs.lineitem;
 
-public class LineItem {
+public class LineItem implements Comparable<LineItem>{
 	private final String productName;
 	private final int id;
 	private final double cost;
@@ -39,5 +39,9 @@ public class LineItem {
 	@Override
 	public boolean equals(Object obj) {
 		return this.id==((LineItem)obj).id;
+	}
+	@Override
+	public int compareTo(LineItem item) {
+		return this.id-item.id;
 	}
 }
