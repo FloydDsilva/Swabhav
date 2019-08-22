@@ -3,7 +3,6 @@ package com.techlabs.comparable.test;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.techlabs.comparable.AgeComparator;
 import com.techlabs.comparable.Student;
 
 public class StudentTest {
