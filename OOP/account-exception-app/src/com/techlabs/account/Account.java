@@ -7,7 +7,6 @@ public class Account implements Serializable{
 	private final String name;
 	private double balance;
 	public Account(int accountNo, String name, double balance) {
-		super();
 		this.accountNo = accountNo;
 		this.name = name;
 		this.balance = balance;
