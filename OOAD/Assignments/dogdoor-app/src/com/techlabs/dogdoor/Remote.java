@@ -16,16 +16,6 @@ public class Remote {
 		}
 		else {
 			door.open();
-			
-			final Timer timer=new Timer();
-			timer.schedule(new TimerTask() {
-				
-				@Override
-				public void run() {
-					door.close();
-					timer.cancel();    //Timer object takes time to be destroyed by JVM
-				}
-			}, 5000);
 		}
 	}
 }

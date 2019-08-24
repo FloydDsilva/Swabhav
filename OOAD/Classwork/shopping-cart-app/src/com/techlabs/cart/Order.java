@@ -18,21 +18,18 @@ public class Order {
 	public void addLineItem(LineItem lineItem) {
 		if (items.size() == 0) {
 			items.add(lineItem);
-		} else {
+		} 
+		else {
 			if (contains(lineItem)) {
 				for (LineItem item : items) {
 					if (item.getProduct().getId().equals(lineItem.getProduct().getId())) {
 						item.setQuantity(item.getQauntity() + lineItem.getQauntity());
 					}
 				}
-
-				
-
 			}
 			else {
 				items.add(lineItem);
 			}
-
 		}
 
 	}
