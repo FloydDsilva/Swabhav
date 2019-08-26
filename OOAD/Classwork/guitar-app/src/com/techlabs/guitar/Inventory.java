@@ -6,29 +6,32 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Inventory {
-	private List<Guitar> guitars=new ArrayList<Guitar>();
-	public void addGuitar(String serialNumber, double price, Builder builder,String model,Type type,int numStrings, Wood backWood,Wood topWood) {
-		guitars.add(new Guitar(serialNumber, price, new GuitarSpec(builder, model, type, numStrings, backWood, topWood)));
+	private List<Instrument> instruments=new ArrayList<Instrument>();
+	
+	public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
+		instruments.add(new Instrument(serialNumber, price, spec));
 	}
-	public Guitar getGuitar(String serialNumber) {
-		for(Iterator<Guitar> i=guitars.iterator();i.hasNext();) {
-			Guitar guitar=i.next();
-			if(guitar.getSerialNumber().equals(serialNumber)) {
-				return guitar;
+	
+	public Instrument get(String serialNumber) {
+		for(Iterator<Instrument> i=instruments.iterator();i.hasNext();) {
+			Instrument instrument=i.next();
+			if(instrument.getSerialNumber().equals(serialNumber)) {
+				return instrument;
 			}
 		}
 		return null;
 	}
-	public List<Guitar> search(GuitarSpec searchSpec) {
-		List<Guitar> matchingGuitars=new LinkedList<Guitar>();
-		for(Iterator<Guitar> i=guitars.iterator();i.hasNext();) {
-			Guitar guitar=i.next();
-			GuitarSpec guitarSpec=guitar.getSpec();
-			if(guitarSpec.matches(searchSpec)) {
-				matchingGuitars.add(guitar);
+	
+	public List<Instrument> search(InstrumentSpec searchSpec) {
+		List<Instrument> matchingInstruments=new LinkedList<Instrument>();
+		for(Iterator<Instrument> i=instruments.iterator();i.hasNext();) {
+			Instrument instrument=i.next();
+			InstrumentSpec instrumentSpec=instrument.getSpec();
+			if(instrumentSpec.matches(searchSpec)) {
+				matchingInstruments.add(instrument);
 			}
 		}
-		return matchingGuitars;
+		return matchingInstruments;
 	}
 	
 }

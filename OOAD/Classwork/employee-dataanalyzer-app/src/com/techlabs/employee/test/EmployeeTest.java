@@ -1,6 +1,8 @@
 package com.techlabs.employee.test;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import com.techlabs.employee.Employee;
 import com.techlabs.employee.EmployeeFileDataLoader;
@@ -13,11 +15,40 @@ public class EmployeeTest {
 		EmployeeFileDataLoader loaderFile=new EmployeeFileDataLoader();
 		HashSet<Employee> employees=loaderFile.loadEmployeesFile("resources\\dataFile.txt");
 		displayEmp(employees);
+		EmployeeSetAnalyzer analyserF=new EmployeeSetAnalyzer(employees);
+		System.out.println("Max Salaried Employee:"+analyserF.getHighestSalEmp());
+		System.out.println("Designation Distribution");
+		Map<String, Integer> desgnMap=analyserF.getDesignationDistribution();
+		displayDesgnMap(desgnMap);
+		System.out.println("Department Distribution");
+		Map<Integer, Integer> deptMap=analyserF.getDepartmentDistribution();
+		displayDeptMap(deptMap);
 		
+		System.out.println();
 		HashSet<Employee> employeesOnline=new EmployeeURLDataLoader().loadEmployeesURL("https://swabhav-tech.firebaseapp.com/emp.txt ");
 		displayEmp(employeesOnline);
+		EmployeeSetAnalyzer analyserO=new EmployeeSetAnalyzer(employeesOnline);
+		System.out.println("Max Salaried Employee:"+analyserO.getHighestSalEmp());
+		System.out.println("Designation Distribution");
+		Map<String, Integer> desgnMapO=analyserO.getDesignationDistribution();
+		displayDesgnMap(desgnMapO);
+		System.out.println("Department Distribution");
+		Map<Integer, Integer> deptMapO=analyserF.getDepartmentDistribution();
+		displayDeptMap(deptMapO);
 	}
 
+	private static void displayDesgnMap(Map<String, Integer> frequencyMap) {
+		for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
+			System.out.println("\t"+entry.getKey() + ": " + entry.getValue());
+		}
+	}
+
+	private static void displayDeptMap(Map<Integer, Integer> frequencyMap) {
+		for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+			System.out.println("\t "+entry.getKey() + ": " + entry.getValue());
+		}
+	}
+	
 	private static void displayEmp(HashSet<Employee> employees) {
 		for (Employee employee : employees) {
 			System.out.println(employee);
