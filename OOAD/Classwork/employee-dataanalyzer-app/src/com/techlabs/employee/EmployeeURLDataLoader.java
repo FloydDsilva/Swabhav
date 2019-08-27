@@ -10,13 +10,27 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
 
-public class EmployeeURLDataLoader {
+public class EmployeeURLDataLoader implements ILoadable<Employee>{
 	HashSet<Employee> empSet=new HashSet<Employee>();
 	BufferedReader br=null;
+	private final String path;
+	
+	public EmployeeURLDataLoader(String path) {
+		this.path=path;
+	}
 
-	public HashSet<Employee> loadEmployeesURL(String urlString) {
+	public void parse() throws IOException {
+		String line="";
+		while((line=br.readLine())!=null) {
+			String values[] = line.split(",");
+			empSet.add(Employee.parseEmp(values));
+		}
+	}
+
+	@Override
+	public HashSet<Employee> loadData() {
 		try {
-			URL  url=new URL(urlString);
+			URL  url=new URL(path);
 			HttpURLConnection connection=(HttpURLConnection) url.openConnection();
 			InputStream inputStream=connection.getInputStream();
 			br=new BufferedReader(new InputStreamReader(inputStream));
@@ -25,13 +39,5 @@ public class EmployeeURLDataLoader {
 			e.printStackTrace();
 		}
 		return empSet;
-	}
-	
-	public void parse() throws IOException {
-		String line="";
-		while((line=br.readLine())!=null) {
-			String values[] = line.split(",");
-			empSet.add(Employee.parseEmp(values));
-		}
 	}
 }

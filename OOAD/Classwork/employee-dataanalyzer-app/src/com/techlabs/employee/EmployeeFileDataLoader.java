@@ -10,12 +10,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
 
-public class EmployeeFileDataLoader {
+public class EmployeeFileDataLoader implements ILoadable<Employee> {
 	HashSet<Employee> empSet=new HashSet<Employee>();
 	BufferedReader br=null;
+	private final String path;
 	
+	public EmployeeFileDataLoader(String path) {
+		this.path=path;
+	}
+	public void loadEmployees() throws IOException {
+		String line="";
+		while((line=br.readLine())!=null) {
+			String values[] = line.split(",");
+			empSet.add(Employee.parseEmp(values));
+		}
+	}
 
-	public HashSet<Employee> loadEmployeesFile(String path) {
+	@Override
+	public HashSet<Employee> loadData() {
 		try {
 			br=new BufferedReader(new FileReader(path));
 			loadEmployees();
@@ -24,17 +36,4 @@ public class EmployeeFileDataLoader {
 		}
 		return empSet;
 	}
-	
-	public void loadEmployees() throws IOException {
-		String line="";
-		while((line=br.readLine())!=null) {
-			String values[] = line.split(",");
-			empSet.add(Employee.parseEmp(values));
-		}
-	}
-	
-	
-
-	
-	
 }

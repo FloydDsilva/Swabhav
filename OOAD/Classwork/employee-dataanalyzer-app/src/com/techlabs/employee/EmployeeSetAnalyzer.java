@@ -9,6 +9,10 @@ public class EmployeeSetAnalyzer {
 	private HashSet<Employee> employees =new HashSet<Employee>();
 	
 	
+	public EmployeeSetAnalyzer(ILoadable<Employee> loader) {
+		employees=loader.loadData();
+	}
+
 	public EmployeeSetAnalyzer(HashSet<Employee> employees) {
 		this.employees = employees;
 	}

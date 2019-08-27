@@ -12,10 +12,9 @@ import com.techlabs.employee.EmployeeURLDataLoader;
 public class EmployeeTest {
 
 	public static void main(String[] args) {
-		EmployeeFileDataLoader loaderFile=new EmployeeFileDataLoader();
-		HashSet<Employee> employees=loaderFile.loadEmployeesFile("resources\\dataFile.txt");
+		EmployeeSetAnalyzer analyserF=new EmployeeSetAnalyzer(new EmployeeFileDataLoader("resources\\dataFile.txt"));
+		HashSet<Employee> employees=analyserF.getEmployees();
 		displayEmp(employees);
-		EmployeeSetAnalyzer analyserF=new EmployeeSetAnalyzer(employees);
 		System.out.println("Max Salaried Employee:"+analyserF.getHighestSalEmp());
 		System.out.println("Designation Distribution");
 		Map<String, Integer> desgnMap=analyserF.getDesignationDistribution();
@@ -25,15 +24,15 @@ public class EmployeeTest {
 		displayDeptMap(deptMap);
 		
 		System.out.println();
-		HashSet<Employee> employeesOnline=new EmployeeURLDataLoader().loadEmployeesURL("https://swabhav-tech.firebaseapp.com/emp.txt ");
-		displayEmp(employeesOnline);
-		EmployeeSetAnalyzer analyserO=new EmployeeSetAnalyzer(employeesOnline);
+		EmployeeSetAnalyzer analyserO=new EmployeeSetAnalyzer(new EmployeeURLDataLoader("https://swabhav-tech.firebaseapp.com/emp.txt"));
+		HashSet<Employee> employeesO=analyserF.getEmployees();
+		displayEmp(employeesO);
 		System.out.println("Max Salaried Employee:"+analyserO.getHighestSalEmp());
 		System.out.println("Designation Distribution");
 		Map<String, Integer> desgnMapO=analyserO.getDesignationDistribution();
 		displayDesgnMap(desgnMapO);
 		System.out.println("Department Distribution");
-		Map<Integer, Integer> deptMapO=analyserF.getDepartmentDistribution();
+		Map<Integer, Integer> deptMapO=analyserO.getDepartmentDistribution();
 		displayDeptMap(deptMapO);
 	}
 
