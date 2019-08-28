@@ -1,6 +1,8 @@
-package com.techlabs.lsp.voilation;
+package com.techlabs.lsp.voilation.test;
 
 import com.techlabs.lsp.solution.Polygon;
+import com.techlabs.lsp.voilation.Rectangle;
+import com.techlabs.lsp.voilation.Square;
 
 public class LSPTest {
 
