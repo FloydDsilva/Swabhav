@@ -17,9 +17,9 @@ class ResultAnalyserUnitTest {
 	Player player2=new Player("virat",Mark.O);
 	@Test
 	void ResultShouldBeSetToWinIfGameWon() {
-		board.addMark(0, player);
-		board.addMark(1, player);
 		board.addMark(2, player);
+		board.addMark(4, player);
+		board.addMark(6, player);
 		ResultAnalyser analyzer=new ResultAnalyser(board);
 		analyzer.checkResult();
 		assertEquals(Result.WIN, analyzer.getResult());

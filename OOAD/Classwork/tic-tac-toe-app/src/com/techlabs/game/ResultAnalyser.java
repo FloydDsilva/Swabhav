@@ -5,37 +5,35 @@ public class ResultAnalyser {
 	private Board board;
 	public ResultAnalyser(Board board) {
 		this.board = board;
+		result=Result.PROGRESS;
 	}
 	public void checkResult() {
-		//For Row
-		try {
-			for(int i=0;i<=6;i+=3) {
-				if((markAt(i)==markAt(i+1))&&(markAt(i+1)==markAt(i+2))){
-					result=Result.WIN;
-				}
-			}
 			
-		}catch (NullPointerException e) {
-		}
-		try {
-			//For Column
-			for(int i=0;i<=2;i++) {
-				if((markAt(i)==markAt(i+3))&&(markAt(i+3)==markAt(i+6))){
-					result=Result.WIN;
-				}
-			}
-			
-		}catch (NullPointerException e) {
-		}
-		try {
+		
 			//For Diagonal
-			if((markAt(0)==markAt(4))&&(markAt(4)==markAt(8))||(markAt(2)==markAt(4))&&(markAt(4)==markAt(6))) {
+			if(matchDiagonals()) {
 				result=Result.WIN;
 			}
-			checkDraw();
+			if(!matchDiagonals()) {
+				//For Row
+				for(int i=0;i<=6;i+=3) {
+					if((markAt(i)==markAt(i+1))&&(markAt(i+1)==markAt(i+2))&&(markAt(i+2)!=null)){
+						result=Result.WIN;
+					}
+				}
+				//For Column
+				for(int i=0;i<=2;i++) {
+					if((markAt(i)==markAt(i+3))&&(markAt(i+3)==markAt(i+6))&&(markAt(i+6)!=null)){
+						result=Result.WIN;
+					}
+				}
+			}
 			
-		}catch (NullPointerException e) {
-		}
+			checkDraw();
+	}
+	
+	private boolean matchDiagonals() {
+		return ((markAt(0)==markAt(4))&&(markAt(4)==markAt(8))&&(markAt(8)!=null)||(markAt(2)==markAt(4))&&(markAt(4)==markAt(6))&&(markAt(6)!=null));
 	}
 	
 	private void checkDraw() {
@@ -58,6 +56,14 @@ public class ResultAnalyser {
 	}
 	
 	public Mark markAt(int position) {
-		return board.getCell(position).getMark();
+		Mark mark=null;
+		try {
+			mark= board.getCell(position).getMark();
+		}catch (NullPointerException e) {
+		}
+		return mark;
 	}
+	
+	
+	
 }

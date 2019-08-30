@@ -25,9 +25,25 @@ public class Game {
 	public void play(int position) {
 		board.addMark(position, currentPlayer);
 		analyser.checkResult();
-		while(analyser.getResult()==Result.PROGRESS) {
-			
+		if(analyser.getResult()==Result.PROGRESS) {
+			swapCurrent();
 		}
+	}
+
+	public Player[] getPlayer() {
+		return player;
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public ResultAnalyser getAnalyser() {
+		return analyser;
 	}
 	
 }
