@@ -1,13 +1,15 @@
-package com.techlabs.employee.test;
+package com.techlabs.organization.test;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import com.techlabs.employee.Employee;
-import com.techlabs.employee.EmployeeFileDataLoader;
-import com.techlabs.employee.EmployeeSetAnalyzer;
-import com.techlabs.employee.EmployeeURLDataLoader;
+import com.techlabs.organization.employee.Employee;
+import com.techlabs.organization.employee.EmployeeSetAnalyzer;
+import com.techlabs.organization.employee.HierarchyGenerator;
+import com.techlabs.organization.loaders.EmployeeFileDataLoader;
+import com.techlabs.organization.loaders.EmployeeURLDataLoader;
+
 
 public class EmployeeTest {
 
@@ -36,6 +38,20 @@ public class EmployeeTest {
 		displayDeptMap(deptMapO);
 		
 		//7901,"FLOYD','DEVELOPER',NULL,'1-JUN-92',1000,NULL,40
+		HierarchyGenerator h=new HierarchyGenerator(employees);
+		h.organize();
+		displaySubordinates(employees);
+	}
+
+	private static void displaySubordinates(HashSet<Employee> employees) {
+		for (Employee employee : employees) {
+			System.out.println(employee);
+			System.out.println("Subordinates:");
+			for (Employee subordinate : employee.getSubordinates()) {
+				System.out.println(subordinate.getDesignation());
+			}
+		}
+		
 	}
 
 	private static void displayDesgnMap(Map<String, Integer> frequencyMap) {
