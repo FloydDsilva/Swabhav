@@ -41,6 +41,13 @@ public class EmployeeTest {
 		HierarchyGenerator h=new HierarchyGenerator(employees);
 		h.organize();
 		displaySubordinates(employees);
+		
+		System.out.println(h.getRootEmployee()+"\n");
+		
+		h.traversal(h.getRootEmployee());
+		
+		
+		
 	}
 
 	private static void displaySubordinates(HashSet<Employee> employees) {
@@ -51,7 +58,6 @@ public class EmployeeTest {
 				System.out.println(subordinate.getDesignation());
 			}
 		}
-		
 	}
 
 	private static void displayDesgnMap(Map<String, Integer> frequencyMap) {

@@ -1,5 +1,6 @@
 package com.techlabs.publisher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
@@ -12,20 +13,28 @@ public class Account {
 		this.accNo = accNo;
 		this.name = name;
 		this.balance = balance;
+		listeners=new ArrayList<Listener>();
 	}
 	
 	public void deposit(double ammount) {
 		balance+=ammount;
+		notifyListeners();
 	}
 	
 	public void withdraw(double ammount) {
 		balance-=ammount;
+		notifyListeners();
 	}
 	
 	public void addListener(Listener listener) {
 		listeners.add(listener);
 	}
 
+	public void notifyListeners() {
+		for (Listener listener : listeners) {
+			listener.update(this);
+		}
+	}
 	public String getAccNo() {
 		return accNo;
 	}

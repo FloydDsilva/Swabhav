@@ -6,7 +6,7 @@ import com.techlabs.publisher.Listener;
 public class EmailListener implements Listener {
 
 	@Override
-	public void update(Account acount) {
+	public void update(Account account) {
 		System.out.println("Email sent!\nBalance is "+account.getBalance());
 
 	}
