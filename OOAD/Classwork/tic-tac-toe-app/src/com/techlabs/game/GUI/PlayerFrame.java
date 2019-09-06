@@ -1,14 +1,18 @@
 package com.techlabs.game.GUI;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.techlabs.game.GUI.test.GameGUITest;
+
 public class PlayerFrame extends JFrame{
-	static String nameString="Abc";
+	static String player1Name="Abc",player2Name="Def";
 	JTextField player1;
 	JTextField player2;
 	JButton playButton;
@@ -33,9 +37,18 @@ public class PlayerFrame extends JFrame{
 		add(player1);
 		add(player2);
 		
-		playButton=new JButton("Login");
+		playButton=new JButton("Play");
 		playButton.setBounds(325, 300, 150, 50);
-		//loginButton.addActionListener(new LoginValidator(this));
+		playButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				player1Name=player1.getText();
+				player2Name=player2.getText();
+				new GameFrame();
+				dispose();
+			}
+		});
 		add(playButton);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
