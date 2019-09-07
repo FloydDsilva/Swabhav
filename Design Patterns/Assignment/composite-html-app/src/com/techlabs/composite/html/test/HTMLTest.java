@@ -1,5 +1,10 @@
 package com.techlabs.composite.html.test;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import com.techlabs.composite.html.Control;
 import com.techlabs.composite.html.ControlGroup;
 
@@ -12,9 +17,18 @@ public class HTMLTest {
 		html.addControl(body);
 		body.addControl(div);
 		div.addControl(new Control("input", "text","FirstName"));
+		div.addControl(new Control("br"));
+		div.addControl(new Control("br"));
 		div.addControl(new Control("input", "text","LastName"));
 		
-		html.parseHTML();
+		StringBuilder sb=html.parseHTML();
+		
+		File file = new File("C:\\Users\\Floyd\\Desktop\\htmltest.html");
+		try(BufferedWriter writer=new BufferedWriter(new FileWriter(file))){
+			writer.write(sb.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

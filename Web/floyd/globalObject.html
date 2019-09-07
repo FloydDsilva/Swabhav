@@ -1,0 +1,18 @@
+<html>
+    <script>
+        var global=5
+        function func1() {
+            var local=3
+            console.log("func1: "+global)
+            console.log("func1: "+local)
+        }
+
+        function func2() {
+            console.log("func1: "+global)
+            console.log("func1: "+local) //error local not defined
+        }
+
+        func1();
+        func2();
+    </script>
+</html>

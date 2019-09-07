@@ -1,5 +1,9 @@
 package com.techlabs.organization.test;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -46,8 +50,14 @@ public class EmployeeTest {
 		
 		h.traversal(h.getRootEmployee());
 		
+		//System.out.println(h.getSB());
 		
-		
+		File file = new File("C:\\Users\\Floyd\\Desktop\\xmltest.xml");
+		try(BufferedWriter writer=new BufferedWriter(new FileWriter(file))){
+			writer.write(h.getSB().toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void displaySubordinates(HashSet<Employee> employees) {
