@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script>
+        window.onload = function () {
+            var colorSelectArray = document.getElementById("colorSelectArray")
+            var colors = [{ text: "Red", value: "#eb4034" }, { text: "Blue", value: "#34ebcc" }, { text: "Green", value: "#7beb31" }, { text: "Yellow", value: "#e8d931" }]
+            for (var index = 0; index < colors.length; index++) {
+                var element = document.createElement("OPTION");
+                element.textContent = colors[index].text
+                element.value = colors[index].value
+                colorSelectArray.appendChild(element)
+            }
+        }
+        function changeBackground() {
+            var colorList = document.getElementById("colorList")
+            var color = colorList.value
+            document.getElementById("body").style.background = color
+        }
+
+
+        function changeBackgroundArray() {
+            var colorSelectArray = document.getElementById("colorSelectArray")
+            var color = colorSelectArray.value
+            document.getElementById("body").style.background = color
+        }
+
+    </script>
+</head>
+
+<body id="body">
+    <center>
+        Select:
+        <select id="colorList" onchange="changeBackground()">
+            <option selected value="White">--select--</option>
+            <option value="#eb4034">Red</option>
+            <option value="#34ebcc">Blue</option>
+            <option value="#7beb31">Green</option>
+            <option value="#e8d931">Yellow</option>
+        </select>
+    </center>
+    <center>
+        Select(Dynamic):
+        <select id="colorSelectArray" onchange="changeBackgroundArray()">
+            <option selected value="White">--select--</option>
+
+        </select>
+    </center>
+</body>
+
+</html>

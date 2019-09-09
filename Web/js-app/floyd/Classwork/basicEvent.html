@@ -1,0 +1,27 @@
+<html>
+    <head></head>
+    <body>
+        <h1 align="center">Event</h1>
+        <div align="center">
+            name: <input type="text" id="input">
+            <button onclick="wish()">Wish</button>
+            <button onclick="clr()">Clear</button>
+        </div>
+        <h1 style="color:darkred" align="center" id="wishText"></h1>
+        <script>
+            var wishText=document.getElementById("wishText")
+            function wish() {
+                var name=document.getElementById("input").value
+                
+                wishText.innerHTML="Hello "+name+", new to JS"
+                wishText.style.borderStyle='double'
+            }
+            function clr() {
+                document.getElementById("input").value=""
+                wishText.innerHTML=""
+                wishText.style.borderStyle='none'
+
+            }
+        </script>
+    </body>
+</html>

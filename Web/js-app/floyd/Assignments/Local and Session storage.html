@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <script>
+        var localCount =localStorage.getItem('on_load_counter')
+        var sessionCount=sessionStorage.getItem('on_load_counter')
+            function increment() {
+                var localLabel=document.getElementById("localCount")
+                localLabel.innerHTML=(++localCount)
+                localStorage.setItem('on_load_counter',localCount)
+                var sessionLabel=document.getElementById("sessionCount")
+                sessionLabel.innerHTML=(++sessionCount)
+                sessionStorage.setItem('on_load_counter',sessionCount)
+            }
+            function clear(){
+                var localLabel=document.getElementById("sessionCount")
+                localStorage.clear()
+                localLabel.innerHTML=localStorage.getItem('on_load_counter')
+                var sessionLabel=document.getElementById("sessionCount")
+                sessionStorage.clear()
+                sessionLabel.innerHTML=sessionStorage.getItem('on_load_counter')
+            }
+    </script>
+</head>
+
+<body>
+    Local Count:<label id="localCount">0</label>
+    Session Count:<label id="sessionCount">0</label>
+    <br>
+    <button onclick="increment()">Increment</button>
+    <button onclick="clear()">Clear</button>
+    <article>Note: Increment then open the page in a new tab to see the changes <br> Session counter will get reset in the new tab</article>
+</body>
+
+</html>
