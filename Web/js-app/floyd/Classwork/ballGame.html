@@ -1,0 +1,121 @@
+<html>
+
+<head>
+    <title> Blue Ball</title>
+    <style>
+        ol {
+            text-align: center;
+            list-style-position: inside;
+        }
+
+        button {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
+
+        #playButton {
+            border-radius: 0%;
+            text-align: center;
+            width: 100px;
+            padding: 15px 20px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Blue Ball Game</h1>
+        <div id="mainArea">
+            <section>
+                <header style="font-size: 24px">Rules:</header>
+                <article>
+                    <ol>
+                        <li>Player has to guess the blue ball inorder to win the game</li>
+                        <li>Player will 3 attempts to guess the game</li>
+                        <li>If guess is lower, button will turn red</li>
+                        <li>If guess is higher, button will turn green</li>
+                    </ol>
+                </article>
+            </section>
+            <button id="playButton" onclick="playGame()"> Ok </button>
+        </div>
+    </center>
+</body>
+<script>
+
+    function playGame() {
+        (function () {
+            document.getElementById('mainArea').innerHTML = ""
+        })()
+        var mainArea = document.getElementById('mainArea')
+        var random = Math.floor(Math.random() * 50) + 1
+        random = 20
+        var attempt = 0
+        var attemptText = document.createTextNode("")
+        var pTag = document.createElement("P")
+        pTag.id = "attemptValue"
+        pTag.appendChild(attemptText)
+        mainArea.appendChild(pTag)
+        for (var i = 1; i <= 50; i++) {
+            var btn = document.createElement("BUTTON")
+            //btn.innerHTML = i
+            btn.value = i
+            mainArea.appendChild(btn)
+            btn.addEventListener('click', function () {
+                attempt += 1
+                document.getElementById("attemptValue").innerHTML = "Attempt=" + attempt
+                if (attempt <= 3) {
+
+                    if (this.value == random) {
+                        this.style.background = "Blue"
+                        console.log(this.value, random)
+                        var elements = mainArea.querySelectorAll('button')
+                        for (var i = 0; i < elements.length; i++) {
+                            elements[i].disabled = true
+                        }
+                        setInterval(() => {
+                            restart("You Won!")
+                        }, 1000)
+
+                    }
+                    else if (this.value >= random) {
+                        this.style.background = "Green"
+                        console.log(this.value, random)
+                        if (attempt >= 3) {
+                            setInterval(() => {
+                                restart("You Lost!")
+                            }, 1000)
+                        }
+                    }
+                    else {
+                        this.style.background = "Red"
+                        console.log(this.value, random)
+                        if (attempt >= 3) {
+                            setInterval(() => {
+                                restart("You Lost!")
+                            }, 1000)
+                        }
+                    }
+                }
+            })
+        }
+
+    }
+    function restart(result) {
+
+        retVal = confirm(result + " Do you want to continue ?");
+        if (retVal == true) {
+            document.location.reload(true)
+        }
+
+
+    }
+
+
+</script>
+
+</html>

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script>
+            'use strict'
+            var time
+            var interval
+            function setTimeOut () {
+                var timeArea = document.getElementById('timeArea')
+                time=setTimeout(() => {
+                timeArea.innerHTML+="TimeOut Called! "
+                }, 2000)
+            }
+            function closeTimeOut () {
+                clearTimeout(time)
+            }
+            function setInterVal () {
+                var intervalArea = document.getElementById('intervalArea')
+                interval=setInterval(() => {
+                    intervalArea.innerHTML+="Interval Called! "
+                }, 2000)
+            }
+            function closeInterVal () {
+                clearInterval(interval)
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="setTimeOut()">Start TimeOut</button>
+        <button onclick="closeTimeOut()">Close TimeOut</button>
+        <br><br>
+        <button onclick="setInterVal()">Start Interval</button>
+        <button onclick="closeInterVal()">Close Interval</button>
+        <br>
+        <br>
+        <section>
+            <article id="timeArea"></article>
+            <br>
+            <article id="intervalArea"></article>
+        </section>
+    </body>
+</html>

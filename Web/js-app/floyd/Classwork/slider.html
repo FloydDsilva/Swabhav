@@ -7,21 +7,27 @@
             var slider = document.getElementById("myRange")
             var value = document.querySelector("h3");
             value.innerHTML = slider.value
-        
+
             slider.oninput = function () {
                 value.innerHTML = this.value
-                createButtons(this.value) 
+                createButtons(this.value)
             }
         }
-            function createButtons(value) {
-                for (var i = 1; i <= value; i++) {
-                    var btn = document.createElement("BUTTON")
-                    btn.innerHTML = i
-                    document.body.appendChild(btn)
-                }
+        function createButtons(value) {
+            var buttonArea = document.getElementById("buttonArea")
+            //buttonArea.innerHTML=""     or
+            while (buttonArea.firstChild) {
+                buttonArea.removeChild(buttonArea.firstChild)
             }
-
-        
+            for (var i = 1; i <= value; i++) {
+                var btn = document.createElement("BUTTON")
+                btn.innerHTML = i
+                buttonArea.appendChild(btn)
+                btn.addEventListener('click', function () {
+                    console.log(this.innerHTML);
+                })
+            }
+        }
     </script>
 </head>
 
@@ -29,7 +35,9 @@
     <center>
         <input type="range" min="1" max="100" value="1" id="myRange">
         <h3>Value</h3>
+        <div id="buttonArea"></div>
     </center>
+
 </body>
 
 </html>
