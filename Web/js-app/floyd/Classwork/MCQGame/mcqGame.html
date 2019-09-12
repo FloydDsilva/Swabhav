@@ -1,0 +1,322 @@
+<html>
+
+<head>
+    <title>MCQ Game</title>
+</head>
+<style>
+    #animateIt {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 7%;
+    }
+
+    #quesStyle {
+        font-size: 180%;
+        margin-top: 10%;
+        padding-block: 3%;
+        display: inline-block;
+    }
+
+    #optionArea {
+        margin: 4%;
+        font-size: 130%;
+    }
+
+    input {
+        margin-top: 4%;
+    }
+
+    #gameArea {
+        margin: 10%;
+        border-style: solid;
+        border-width: 1px;
+        text-align: center;
+    }
+
+    #attemptArea {
+        text-align: right;
+        margin-right: 4%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        font-size: 110%
+    }
+
+    #nextBtn {
+        font-size: 150%;
+        background: green;
+        margin-left: 70%;
+        border: 1px solid black;
+    }
+
+    #resultArea {
+        text-align: center;
+    }
+
+    canvas {
+        height: 30%;
+        width: 60%;
+    }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+
+    <section id="gameArea">
+        <div id="animateIt">
+            <div id="quesStyle"><label class="quesStyle">Q. </label><label id="question" class="quesStyle">Question
+                    is?</label></div><br>
+            <article id="optionArea">
+                <input id="rb1" class="opClass" type="radio" name="options" value="male" checked><label
+                    id="option1">Male</label>
+                <br>
+                <input id="rb2" class="opClass" type="radio" name="options" value="female"><label
+                    id="option2">Female</label><br>
+                <input id="rb3" class="opClass" type="radio" name="options" value="other"> <label
+                    id="option3">Other</label><br>
+                <input id="rb4" class="opClass" type="radio" name="options" value="Animal"> <label
+                    id="option4">Animal</label><br>
+            </article>
+        </div>
+        <article>
+            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+        </article>
+        <article id="attemptArea">attempt</article>
+
+    </section>
+    <section id="resultArea">
+        <canvas id="canvas">Type a text if the browser doesn't
+            support
+            canvas tag
+        </canvas>
+        <article id="scoreText"></article>
+    </section>
+
+
+</body>
+<script>
+    var questionsOld = [{
+            qId: "1",
+            ques: "Question1",
+            op1: "Q1op1",
+            op2: "Q1op2",
+            op3: "Q1op3",
+            op4: "Q1op4",
+            ans: "male"
+        },
+        {
+            qId: "2",
+            ques: "Question2",
+            op1: "Q2op1",
+            op2: "2Qop2",
+            op3: "Q2op3",
+            op4: "Q3op4",
+            ans: "female"
+        },
+        {
+            qId: "3",
+            ques: "Question3",
+            op1: "Q3op1",
+            op2: "Q3op2",
+            op3: "Q3op3",
+            op4: "Q3op4",
+            ans: "other"
+        },
+        {
+            qId: "4",
+            ques: "Question4",
+            op1: "Q4op1",
+            op2: "Q4op2",
+            op3: "Q4op3",
+            op4: "Q4op4",
+            ans: "Animal"
+        },
+        {
+            qId: "5",
+            ques: "Question5",
+            op1: "Q5op1",
+            op2: "Q5op2",
+            op3: "Q5op3",
+            op4: "Q5op4",
+            ans: "male"
+        }
+    ];
+    var attempt = 1
+    var score = 0
+
+    function updateAttemptArea() {
+        document.getElementById('attemptArea').innerHTML = attempt + " of 5 questions"
+    }
+
+    function loadQuestion(question) {
+        document.getElementById('question').innerHTML = question.ques
+        var option1 = document.getElementById('option1')
+        var option2 = document.getElementById('option2')
+        var option3 = document.getElementById('option3')
+        var option4 = document.getElementById('option4')
+        var rBtn1 = document.getElementById('rb1')
+        var rBtn2 = document.getElementById('rb2')
+        var rBtn3 = document.getElementById('rb3')
+        var rBtn4 = document.getElementById('rb4')
+        option1.innerHTML = question.op1
+        rBtn1.value = question.op1
+        rBtn1.checked = false
+        option2.innerHTML = question.op2
+        rBtn2.value = question.op2
+        rBtn2.checked = false
+        option3.innerHTML = question.op3
+        rBtn3.value = question.op3
+        rBtn3.checked = false
+        option4.innerHTML = question.op4
+        rBtn4.value = question.op4
+        rBtn4.checked = false
+
+        setTimeout(animateRtc(), 2000)
+    }
+    /* function animateRtc () {
+        //animateCtl()
+    let start = Date.now();
+    document.getElementById('animateIt').style.left="30%"
+    let timer = setInterval(function() {
+    let timePassed = Date.now() - start;
+    document.getElementById('animateIt').style.marginRight = timePassed / 10 + '%';
+    if (timePassed > 2000) clearInterval(timer);
+    }, 10);
+    console.log("New Data")
+    } */
+
+    function animateRtc() {
+        let progress = 1;
+        let start = 30;
+        let end = 0;
+        document.getElementById('animateIt').style.left = start + "%"
+        let timer = setInterval(function () {
+            document.getElementById('animateIt').style.left = (start - progress) + "%"
+            progress += 0.5
+            if (progress == start) clearInterval(timer)
+        }, 10)
+
+    }
+
+    function animateCtl() {
+        let start = Date.now();
+        document.getElementById('animateIt').style.textAlign = "center"
+        let timer = setInterval(function () {
+            let timePassed = Date.now() - start;
+            document.getElementById('animateIt').style.right = timePassed / 5 + 'px';
+            if (timePassed > 1000) clearInterval(timer);
+        }, 20);
+        console.log("Old Data")
+    }
+
+    function loadData() {
+        updateAttemptArea()
+        loadQuestion(questions[attempt - 1])
+
+
+    }
+
+    function drawPie() {
+        var canvas = document.getElementById("canvas")
+        canvas.style.border = "1px solid";
+        var context = canvas.getContext("2d");
+        context.beginPath();
+        context.arc(150, 75, 50, 0, (2) * Math.PI)
+        context.fillStyle = "red"
+        context.fill()
+        context.beginPath()
+        context.moveTo(150, 75)
+        context.arc(150, 75, 50, 0, (2 * (score / 5)) * Math.PI)
+        context.fillStyle = "green"
+        context.fill()
+    }
+
+    function disableOptions() {
+        var elements = document.querySelectorAll('.opClass')
+        elements.forEach(element => {
+            element.disabled = true
+            //console.log(element.innerHTML)
+        });
+    }
+
+    function getPlayerAnswer(calcResult) {
+        var pAns = document.querySelector('input[name=options]:checked').value
+        //console.log(pAns)
+        calcResult(pAns, questions[attempt - 1])
+    }
+
+    function calcResult(pAns, question) {
+        if (pAns == question.ans) {
+            score += 1
+        }
+        console.log("Score: " + score + " QAns:" + question.ans + " Qid:" + question.qId + " Pans:" + pAns)
+    }
+    var questions;
+    var initialLoad = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var questionsJSON = this.responseText;
+                var questionsBuffer = JSON.parse(questionsJSON)["questions"];
+                (function () {
+                    questionsBuffer.sort(function (a, b) {
+                        return 0.5 - Math.random()
+                    })
+                    questions = questionsBuffer.slice(0, 5)
+                })()
+                console.log("Connecting")
+                console.log(questions[0])
+                console.log(typeof questionsJSON)
+            }
+        };
+        xhttp.open("GET", "question_file.json", true);
+        xhttp.send();
+    };
+    initialLoad();
+    window.onload = function () {
+        setTimeout(() => {
+            (function () {
+                attempt = 1
+                loadData()
+                updateAttemptArea()
+
+            })();
+
+        }, 100);
+    }
+
+    function nextQuestion() {
+        if (attempt == 4) {
+            getPlayerAnswer(calcResult)
+            attempt += 1
+
+            loadData()
+            var nBtn = document.getElementById('nextBtn')
+            nBtn.innerHTML = "Finish"
+            nBtn.addEventListener('click', function () {
+                getPlayerAnswer(calcResult)
+                disableOptions()
+                var element = document.getElementById('nextBtn')
+                element.parentNode.removeChild(element);
+                (function () {
+                    //document.getElementById('resultArea').innerHTML = "Result Display:" + score
+                    drawPie()
+                    document.getElementById('scoreText').innerHTML = "Score : " + score + " out of 5 (" + (
+                        score / 5) * 100 + "%)"
+                })()
+            })
+
+        } else if (attempt < 4) {
+
+
+            console.log("Attempt " + attempt)
+            getPlayerAnswer(calcResult)
+            attempt += 1
+            animateCtl()
+            loadData()
+        }
+
+    }
+</script>
+
+</html>

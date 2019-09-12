@@ -1,0 +1,47 @@
+{"questions":
+[{
+        "qId": "1",
+        "ques": "Question1",
+        "op1": "Q1op1",
+        "op2": "Q1op2",
+        "op3": "Q1op3",
+        "op4": "Q1op4",
+        "ans": "male"
+    },
+    {
+        "qId": "2",
+        "ques": "Question2",
+        "op1": "Q2op1",
+        "op2": "2Qop2",
+        "op3": "Q2op3",
+        "op4": "Q3op4",
+        "ans": "female"
+    },
+    {
+        "qId": "3",
+        "ques": "Question3",
+        "op1": "Q3op1",
+        "op2": "Q3op2",
+        "op3": "Q3op3",
+        "op4": "Q3op4",
+        "ans": "other"
+    },
+    {
+        "qId": "4",
+        "ques": "Question4",
+        "op1": "Q4op1",
+        "op2": "Q4op2",
+        "op3": "Q4op3",
+        "op4": "Q4op4",
+        "ans": "Animal"
+    },
+    {
+        "qId": "5",
+        "ques": "Question5",
+        "op1": "Q5op1",
+        "op2": "Q5op2",
+        "op3": "Q5op3",
+        "op4": "Q5op4",
+        "ans": "male"
+    }
+]}
