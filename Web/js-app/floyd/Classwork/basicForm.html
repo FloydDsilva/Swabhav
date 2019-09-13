@@ -1,22 +1,35 @@
 <html>
-    <body>
-        <form action="auth.php" method="GET" onsubmit="return validate()">
-            UserName: <input type="text" name="userName"><br>
-            Password: <input type="password" name="password"><br>
-            <button type="submit" value="Submit" onclick="funcSend()">Submit</button>
-            </form>
-        
-    </body>
-    <script>
-            function validate(){
-                var userName = document.getElementsByName("userName")
-                var password = document.getElementsByName("password")
-                if( (userName.length==0)||(password.length==0)){
-                    return false
-                }
-                else{
-                    return true
-                }
-            }
-    </script>
+
+<body>
+    <form action="auth.php" method="GET" onsubmit="return validate()">
+        UserName: <input type="text" id="userName"><label id="uReq"></label><br>
+        Password: <input type="password" id="password"><label id="pReq"></label><br>
+        <input type="submit">
+    </form>
+</body>
+<script>
+    function validate() {
+        var userName = document.getElementById("userName")
+        var password = document.getElementById("password")
+        var uReq = document.getElementById('uReq')
+        var pReq = document.getElementById('pReq')
+
+        uReq.innerHTML = ""
+        pReq.innerHTML = ""
+        var valid = true
+        if ((userName.value.length == 0)) {
+            uReq.innerHTML = " *"
+            uReq.style.color = "red"
+            console.log("Username:" + userName.value.length)
+            valid = false
+        } else if ((password.value.length == 0)) {
+            pReq.innerHTML = " *"
+            pReq.style.color = "red"
+            console.log("Password:" + password.value.length)
+            valid = false
+        }
+        return valid
+    }
+</script>
+
 </html>

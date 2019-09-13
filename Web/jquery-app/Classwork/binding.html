@@ -1,0 +1,55 @@
+<html>
+
+<body>
+    <div id="mainArea">
+        <div id="propertyArea">
+            Text: <input id="inputText" type="text"><br>
+            Font-Size: <input id="fontSize" type="text">px<br>
+            Fore Color: <select id="foreColor">
+                <option selected value="black">--select--</option>
+                <option value="#eb4034">Red</option>
+                <option value="#34ebcc">Blue</option>
+                <option value="#7beb31">Green</option>
+                <option value="#e8d931">Yellow</option>
+            </select>
+            <br>
+            Background Color: <select id="backgroundColor">
+                <option selected value="white">--select--</option>
+                <option value="#eb4034">Red</option>
+                <option value="#34ebcc">Blue</option>
+                <option value="#7beb31">Green</option>
+                <option value="#e8d931">Yellow</option>
+            </select>
+        </div>
+        <div id="resultArea"></div>
+    </div>
+</body>
+<script src="../jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(
+        function () {
+            $('#mainArea').css("text-align", "center")
+            function getInputText() {
+            $('#resultArea').text($('#inputText').val())
+            }
+            function getFontSize() {
+            $('#resultArea').css("font-size", ($('#fontSize').val()) + "px")
+            }
+            function getForeColor () {
+            $('#resultArea').css("color", $('#foreColor option:selected').val())
+            }
+            function getBackgroundColor() {
+            $('#resultArea').css("background-color", $('#backgroundColor option:selected').val())
+            }
+            $('#inputText').on('input',getInputText )
+
+            $('#fontSize').on('input', getFontSize)
+
+            $('#foreColor').change(getForeColor)
+
+            $('#backgroundColor').change(getBackgroundColor)
+        }
+    )
+</script>
+
+</html>
