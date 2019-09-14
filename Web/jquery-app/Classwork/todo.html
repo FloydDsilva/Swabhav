@@ -1,0 +1,110 @@
+<html>
+<style>
+    textarea {
+        vertical-align: middle;
+    }
+</style>
+
+<body>
+    <div id="mainArea">
+        <label id="labelTask">Task: </label><textarea id="inputTask" cols="50" rows="3"></textarea>
+            <input type="radio" name="priority" id="rbHigh" value="high" checked> <label id="textHighRB">High
+                Priority</label>
+            <input type="radio" name="priority" id="rbLow" value="low"> <label id="textLowRB">LowPriority</label>
+            <button id="addTaskButton">Add Task</button>
+    </div>
+    <div id="resultArea"></div>
+</body>
+<script src="../jquery-3.4.1.js"></script>
+<script src="../moment.js"></script>
+<script>
+    var tasks=[]
+    ;
+    (function () {
+
+        function Task(task,priority,time){
+            this.taskText=task
+            this.priority=priority
+            this.time=time
+        }
+        function getTaskText() {
+            return $("#inputTask").val()
+        }
+
+        function getPriorty () {
+            return $("input[name='priority']:checked").val()
+        }
+        
+        function getTime () {
+            let current_datetime = new Date(Date.now())
+            let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" +
+            current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" +
+            current_datetime.getSeconds()
+            return formatted_date
+        }
+
+        var $resultArea=$('#resultArea')
+        function getTask () {
+            return new Task(getTaskText(),getPriorty(),getTime())
+        }
+        function convPriorityColor (priority) {
+            if(priority=="high"){
+                return "red"
+            }
+            return "yellow"
+        }
+        function addTask () {
+            var task = getTask()
+            tasks=JSON.parse(localStorage.getItem('tasks'))
+            console.log("Working")
+            if(tasks.length==0){
+                tasks.push(task)
+                console.log("Tasks:"+tasks)
+            }
+            else{
+                tasks=JSON.parse(localStorage.getItem('tasks'))
+                console.log("In add Task"+tasks)
+                tasks.unshift(task)
+            }
+            console.log(task)
+            console.log("Tasks:"+tasks)
+            localStorage.setItem('tasks',JSON.stringify(tasks))
+            displayTasks()
+        }
+        function displayTasks(){
+            var i=0
+            $resultArea.text("")
+            var dervdTasks=JSON.parse(localStorage.getItem('tasks'))
+            console.log(dervdTasks)
+            if(dervdTasks!=null){
+                tasks=dervdTasks
+            dervdTasks.forEach((task,i) => {
+            $resultArea.append("<span id='tid"+i+"'><span style='border:1px solid "+convPriorityColor(task.priority)+"' id='T"+i+"'>"+task.taskText+"</span><button onclick=removeTask("+i+") id='B"+i+"'>X</button><span class = 'timeClass' id='time"+i+"'>"+task.time+" "+moment(task.time,"YYYY-MM-DD hh:mm:ss").fromNow()+"</span><br>")
+               /* add p tag inside div jquery */ 
+            });
+            $('.timeClass').css("color","grey")
+            }
+        }
+        
+        $(document).ready(
+            (function () {
+                displayTasks()
+            })(),
+        $("#addTaskButton").on('click',addTask)
+        )
+    })()
+
+    function removeTask(index) {
+        var deleteTask=confirm("Do you want to delete it?")
+        if(deleteTask){
+    $("#tid"+index).remove()
+    console.log("Tasks:"+tasks)
+    tasks.splice(index,1)
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+    console.log("Remove:"+index)
+        }
+        displayTasks()
+    }
+</script>
+
+</html>
