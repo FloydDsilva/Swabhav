@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <button id="helloBtn" onclick="funHello()">Hello</button>
+        <button id="printBtn" onclick="funPrint()">Print</button>
+        <div id="timeArea"></div>
+    </body>
+</html>
+<script>
+    function funHello () {
+        alert("Hello")
+    }
+    var timeArea= document.getElementById('timeArea')
+    function funPrint () {
+            //setInterval(console.log(Date(Date.now()).toString()),1000)
+            setInterval(() => {
+            timeArea.innerHTML+=new Date().toLocaleTimeString()+"<br>"
+                
+            }, 1000)
+    }
+</script>

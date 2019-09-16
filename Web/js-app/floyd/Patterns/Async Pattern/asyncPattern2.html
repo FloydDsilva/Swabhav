@@ -1,0 +1,23 @@
+<script>
+    function getDataWithCallBack (fnSuccess,fnError) {
+        var d = Math.floor(Math.random()*100)
+        if (d>=50) {
+            fnSuccess({data:d})
+        }
+        else{
+            fnError({msg:"Error! No. is less than 50"})
+        }
+    }
+    getDataWithCallBack(onSuccess,onError)
+    function onSuccess (obj) {
+        if(obj){
+            console.log(obj.data)
+        }
+    }
+    function onError (obj) {
+        if(obj){
+            console.log(obj.msg)
+        }
+    }
+    console.log("End of Script!")
+</script>

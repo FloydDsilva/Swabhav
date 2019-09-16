@@ -1,0 +1,31 @@
+<html>
+
+</html>
+<script>
+    function makeSwabhavModule() {
+        var obj = {}
+        obj.cubeEvenNumber= function (num) {
+            if(num%2==0){
+                return num**3
+            }
+            return "Can't cube odd numbers"
+        }
+        obj.checkPrimeNumber= function (num) {
+            for (var i = 2; i <= num/2; i++) {
+                if(num%i==0){
+                    return "Non prime number"
+                }
+            }
+            return "Prime Number"
+        }
+        return obj
+    }
+
+    var swabhavModule = makeSwabhavModule()
+    
+    console.log(swabhavModule.cubeEvenNumber(4))
+    console.log(swabhavModule.cubeEvenNumber(5))
+
+    console.log(swabhavModule.checkPrimeNumber(4))
+    console.log(swabhavModule.checkPrimeNumber(5))
+</script>

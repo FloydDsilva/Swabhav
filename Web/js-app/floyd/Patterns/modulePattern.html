@@ -1,0 +1,37 @@
+<html>
+
+<body>
+Module pattern works like factry pattern. Its making it tediuos when making multiple objects
+</body>
+
+</html>
+<script>
+    function makeStudent() {
+        var obj = {}
+        var _rollNo, _name;
+        obj.setRollno = function (rollNo) {
+            if (rollNo > 0) {
+                _rollNo = rollNo
+            }
+        }
+        obj.setName = function (_name) {
+            _name = name
+        }
+        obj.getDetails = function () {
+        return "Roll no:"+_rollNo+" Name: "+_name
+        }
+        return obj;
+    }
+
+    var s1 = makeStudent()
+    s1.setRollno(1)
+    s1.setName("Abc")
+    console.log(s1)
+
+    var s2 = makeStudent()
+    s2.setRollno(2)
+    s2.setName("Def")
+    console.log(s2)
+
+
+</script>

@@ -1,0 +1,62 @@
+<html>
+
+<body>
+
+
+</body>
+<!-- //Constructor Using Closure
+<script>
+    function Student(pid, pname, pcgpa) {
+        this.id = pid
+        this.name = pname
+        this.cgpa = pcgpa
+        this.getDetails = function () {
+            return "Id: " + pid + " Name: " + pname + " Cgpa: " + pcgpa
+        }
+    }
+    var s1 = new Student(101, "ABC", 5.5)
+    console.log(s1.getDetails())
+    console.log(s1)
+    var s2 = new Student(102, "DEF", 6.5)
+    console.log(s2.getDetails())
+    console.log(s2)
+</script> -->
+
+<!-- //Issue with Accessing instance variables cause of context Switching
+<script>
+    function Employee (id,name) {
+        this.id=id
+        this.name=name
+        this.showDetails= function () {
+            setTimeout(function () {
+                console.log(this)
+                console.log(this.id)
+                console.log(this.name)
+                console.log("After 2 seconds")
+            },2000)
+        }
+    }
+    var e1 = new Employee(1,"ABC")
+    e1.showDetails()
+</script>
+ -->
+<!-- Using that variable for self calling to solve the above issue
+<script>
+    function Employee(id, name) {
+        this.id = id
+        this.name = name
+        var that=this
+        this.showDetails = function () {
+            setTimeout(function () {
+                console.log(this)
+                console.log(that.id)
+                console.log(that.name)
+                console.log("After 2 seconds")
+            }, 2000)
+        }
+    }
+    var e1 = new Employee(1, "ABC")
+    e1.showDetails()
+</script>
+ -->
+ </html>
