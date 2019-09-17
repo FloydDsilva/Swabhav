@@ -1,0 +1,86 @@
+<html>
+
+<body>
+    Enter a number: <input type="text" id="input">
+    <button onclick="loadAnimation()">Get Facts</button>
+    <img id="loadingImage">
+    <div id="factArea">cdsf  </div>
+</body>
+<script>
+    var facts = []
+    var factArea = document.getElementById('factArea')
+    var fact
+    displayFacts()
+    function Fact(ftext) {
+        this.id = Math.random()
+        this.ftext = ftext
+    }
+
+    function loadAnimation() {
+        var loadingImage = document.getElementById('loadingImage')
+        loadingImage.src = "loading.gif"
+        setTimeout(() => {
+            loadingImage.src = ""
+            loadFact()
+        }, 2000)
+    }
+
+
+    function loadFact() {
+        var input = document.getElementById('input')
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                fact = new Fact(this.responseText);
+            console.log("Unshift happening")
+        if(isEmptyStorage){
+            initializeArray()
+            facts.unshift(fact)
+            localStorage.setItem("facts", JSON.stringify(facts))
+        }
+        else{
+            facts.push(fact);
+            console.log("Was Empty Facts:"+facts.length)
+        localStorage.setItem("facts", JSON.stringify(facts))
+            }
+        displayFacts()
+                
+        console.log("Fact:"+fact.ftext+" String:"+this.readyState)
+            }
+        };
+        xhttp.open("GET", "http://numbersapi.com/" + (input.value), true);
+        xhttp.send();
+        console.log("Fact outside:"+fact)
+    }
+
+    function displayFacts() {
+        factArea.innerHTML=""
+        //localStorage.removeItem('facts')
+        if (!isEmptyStorage()) {
+            initializeArray()
+            facts.forEach(facty => {
+            console.log("Hello"+facty.ftext)
+               var factTag=document.createElement("p")
+               var node=document.createTextNode(facty.ftext)
+               factTag.appendChild(node)
+               factArea.appendChild(factTag)
+               //console.log("factTag:"+facty.ftext)
+            });
+        }
+    }
+
+    function initializeArray () {
+        if(!isEmptyStorage()){
+            facts=JSON.parse(localStorage.getItem('facts'))
+        }
+    }
+
+    function isEmptyStorage () {
+        if(localStorage.getItem('facts')!= null){
+            return false
+        }
+        return true
+    }
+</script>
+
+</html>

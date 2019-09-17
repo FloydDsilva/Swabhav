@@ -4,13 +4,15 @@
     Enter a number: <input type="text" id="input">
     <button onclick="loadAnimation()">Get Facts</button>
     <img id="loadingImage">
-    <div id="factArea">cdsf  </div>
+    <div id="factArea">cdsf </div>
 </body>
+<script src="../../jquery-3.4.1.js"></script>
 <script>
     var facts = []
     var factArea = document.getElementById('factArea')
     var fact
     displayFacts()
+
     function Fact(ftext) {
         this.id = Math.random()
         this.ftext = ftext
@@ -29,54 +31,54 @@
     function loadFact() {
         var input = document.getElementById('input')
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                fact = new Fact(this.responseText);
-            console.log("Unshift happening")
-        if(isEmptyStorage){
-            initializeArray()
-            facts.unshift(fact)
-            localStorage.setItem("facts", JSON.stringify(facts))
-        }
-        else{
-            facts.push(fact);
-            console.log("Was Empty Facts:"+facts.length)
-        localStorage.setItem("facts", JSON.stringify(facts))
+        $.ajax({
+            type:"GET",
+            url:"http://numbersapi.com/"+(input.value),
+            dataType:"text",
+            success: function (data) {
+                fact = new Fact(data);
+                console.log("Unshift happening")
+                if (isEmptyStorage) {
+                initializeArray()
+                facts.unshift(fact)
+                localStorage.setItem("facts", JSON.stringify(facts))
+                } else {
+                facts.push(fact);
+                console.log("Was Empty Facts:" + facts.length)
+                localStorage.setItem("facts", JSON.stringify(facts))
+                }
+                displayFacts()
+                console.log("Fact:" + fact.ftext + " String:" + data)
             }
-        displayFacts()
-                
-        console.log("Fact:"+fact.ftext+" String:"+this.readyState)
-            }
-        };
-        xhttp.open("GET", "http://numbersapi.com/" + (input.value), true);
-        xhttp.send();
-        console.log("Fact outside:"+fact)
+        })
+        console.log("After ajax!")
+        console.log("Fact outside:" + fact)
     }
 
     function displayFacts() {
-        factArea.innerHTML=""
+        factArea.innerHTML = ""
         //localStorage.removeItem('facts')
         if (!isEmptyStorage()) {
             initializeArray()
             facts.forEach(facty => {
-            console.log("Hello"+facty.ftext)
-               var factTag=document.createElement("p")
-               var node=document.createTextNode(facty.ftext)
-               factTag.appendChild(node)
-               factArea.appendChild(factTag)
-               //console.log("factTag:"+facty.ftext)
+                console.log("Hello" + facty.ftext)
+                var factTag = document.createElement("p")
+                var node = document.createTextNode(facty.ftext)
+                factTag.appendChild(node)
+                factArea.appendChild(factTag)
+                //console.log("factTag:"+facty.ftext)
             });
         }
     }
 
-    function initializeArray () {
-        if(!isEmptyStorage()){
-            facts=JSON.parse(localStorage.getItem('facts'))
+    function initializeArray() {
+        if (!isEmptyStorage()) {
+            facts = JSON.parse(localStorage.getItem('facts'))
         }
     }
 
-    function isEmptyStorage () {
-        if(localStorage.getItem('facts')!= null){
+    function isEmptyStorage() {
+        if (localStorage.getItem('facts') != null) {
             return false
         }
         return true
