@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/bootstrap-app/bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+    </head>
+<body><center>
+    <div id="formArea">
+    <form>
+        RollNo: <input type="number" id="rollNo" required> <!-- <label id="rollReq"></label> --><br>
+        Name: <input type="text" id="name" required="required" /> <!-- <label id="nameReq"></label> --><br>
+        Age: <input type="number" id="age" required="required" /> <!-- label id="ageReq"></label> --><br>
+        Email: <input type="email" id="email" required="required" /> <!-- <label id="emailReq"></label> --><br>
+        Date: <input type="date" id="date" data-date-inline-picker="true" required="required" />
+        <!-- <label id="dateReq"></label> --><br>
+        <input type="radio" name="gender" id="rbMale" value="true" checked> <label id="textMaleRB">Male</label>
+        <input type="radio" name="gender" id="rbFemale" value="false"> <label id="textFelmaleRB">Female</label><br>
+        <input type="button" onclick="addStudent()" value="Add">
+    </form>
+    </div>
+    <div id="tableArea">
+        <table id="studentTable" border="1">
+            <tr>
+                <th>Id</th>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>isMale</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
+    </center>
+</body>
+</html>
+<script src="../../jquery-3.4.1.js"></script>
+<script src="formValidator.js"></script>
+<script src="displayStudentTable.js"></script>
+<script src="addStudent.js"></script>
+<script src="deleteStudent.js"></script>

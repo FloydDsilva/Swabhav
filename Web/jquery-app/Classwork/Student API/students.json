@@ -1,0 +1,65 @@
+[
+    {
+        "id": "40873db2-5458-4284-ab7b-61f64f919836",
+        "rollNo": 20,
+        "name": "Floyd",
+        "age": 22,
+        "email": "f@gmail.com",
+        "date": "2019-09-17",
+        "isMale": false
+    },
+    {
+        "id": "ac04189d-751f-4f73-b0f7-9227e1c00fd4",
+        "rollNo": 7,
+        "name": "DR",
+        "age": 20,
+        "email": "dr@gmail.com",
+        "date": "2019-08-08",
+        "isMale": true
+    },
+    {
+        "id": "8285b7d9-7dd8-48af-aaae-9588740202d3",
+        "rollNo": 25,
+        "name": "Sachin",
+        "age": 50,
+        "email": "sachin@gmail.com",
+        "date": "2019-09-18",
+        "isMale": true
+    },
+    {
+        "id": "4f969868-9b75-447c-ae76-d45730eea1ff",
+        "rollNo": 21,
+        "name": "Akash",
+        "age": 22,
+        "email": "akashgupta0087@gmail.com",
+        "date": "1997-01-28",
+        "isMale": true
+    },
+    {
+        "id": "447703f1-d5e9-4679-a2f9-e814c36bfd18",
+        "rollNo": 20,
+        "name": "Sid",
+        "age": 22,
+        "email": "s@gmail.com",
+        "date": "2019-08-13",
+        "isMale": false
+    },
+    {
+        "id": "c46063be-2609-4c51-8873-ea12b04dd260",
+        "rollNo": 2,
+        "name": "elio",
+        "age": 29,
+        "email": "oliver@gmail.com",
+        "date": "2005-09-21",
+        "isMale": false
+    },
+    {
+        "id": "e3a7d774-d258-4d97-933d-ef5476fd1439",
+        "rollNo": 3,
+        "name": "PS",
+        "age": 21,
+        "email": "ps@gmail.com",
+        "date": "2019-08-08",
+        "isMale": false
+    }
+]
