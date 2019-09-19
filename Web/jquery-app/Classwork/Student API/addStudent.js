@@ -26,21 +26,26 @@ function makeStudent(){
     return new Student(rollNo,name,age,email,date,isMale)
 }
 
-function addStudent () {
+function addStudent (displayStudentTable) {
+    $("#addBtn").attr("disabled", true)
     var student=makeStudent()
     console.log("Student:",student)
-    /* $.ajax({
+    $.ajax({
         type: "POST",
-        /* url: "students.json", 
+        url: "students.json", 
         url: "http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students",
         data:student,
         success: function (data) {
             console.log("Added Student")
-            console.log(student)
-            alert(data)
+            alert("Created Student:"+data)
+            $(".form-control").val("")
+            displayStudentTable()
         },
         error: function () {
             alert("json not found");
         }
-    }) */
+    })
+    
 }
+
+

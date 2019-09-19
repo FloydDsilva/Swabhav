@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <script src="../../jquery-3.4.1.js"></script>
+        <script src="numberApiService.js"></script>
+</head>
+<body>
+    Enter a number: <input type="text" id="input">
+    <button onclick="loadAnimation()">Get Facts</button>
+    <br>
+    <img id="loadingImage">
+    <br>
+    <div id="factArea">cdsf </div>
+</body>
+<script>
+    var facts = []
+    var factArea = document.getElementById('factArea')
+    var fact
+
+    loadFacts()
+    displayFacts()
+
+
+    function loadAnimation() {
+        var loadingImage = document.getElementById('loadingImage')
+        loadingImage.src = "loading.gif"
+        setTimeout(onGetClick, 2000)
+    }
+
+    function onGetClick () {
+        document.getElementById('loadingImage').src = ""
+        var inputNo=$("#input").val();
+        NumberApi.getFacts(inputNo)
+        .then(function (d) {
+            loadFacts()
+            displayFacts()
+        })
+    }
+    function displayFacts() {
+        factArea.innerHTML = ""
+        if (facts) {
+            facts.forEach(facty => {
+                $("#factArea").prepend("<p>"+facty+"</p>")
+            });
+        }
+    }
+
+    function loadFacts () {
+        facts=NumberApi.getPreviousFacts()
+    }
+/* 
+    function initializeArray() {
+        if (!isEmptyStorage()) {
+            facts = JSON.parse(localStorage.getItem('facts'))
+        }
+    }
+
+    function isEmptyStorage() {
+        if (localStorage.getItem('facts') != null) {
+            return false
+        }
+        return true
+    } */
+</script>
+
+</html>

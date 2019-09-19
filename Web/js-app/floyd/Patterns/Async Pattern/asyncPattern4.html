@@ -1,0 +1,31 @@
+<script>
+    function cubeEven(no) {
+        return new Promise(function (resolve, reject) {
+            if (no % 2 == 0) {
+                resolve({
+                    data: no ** 3
+                })
+            } else {
+                reject({
+                    msg: "Not Even"
+                })
+            }
+
+        })
+    }
+    cubeEven(2)
+        .then(function (r) {
+            console.log(r.data)
+        })
+        .catch(function (err) {
+            console.log(err.msg)
+        })
+
+
+    cubeEven(3).then(function (r) {
+        console.log(r.data)
+    }).catch(function (err) {
+        console.log(err.msg)
+    })
+    console.log("End of script")
+</script>

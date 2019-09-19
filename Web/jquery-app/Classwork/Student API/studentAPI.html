@@ -1,37 +1,85 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="/bootstrap-app/bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
-    </head>
-<body><center>
-    <div id="formArea">
-    <form>
-        RollNo: <input type="number" id="rollNo" required> <!-- <label id="rollReq"></label> --><br>
-        Name: <input type="text" id="name" required="required" /> <!-- <label id="nameReq"></label> --><br>
-        Age: <input type="number" id="age" required="required" /> <!-- label id="ageReq"></label> --><br>
-        Email: <input type="email" id="email" required="required" /> <!-- <label id="emailReq"></label> --><br>
-        Date: <input type="date" id="date" data-date-inline-picker="true" required="required" />
-        <!-- <label id="dateReq"></label> --><br>
-        <input type="radio" name="gender" id="rbMale" value="true" checked> <label id="textMaleRB">Male</label>
-        <input type="radio" name="gender" id="rbFemale" value="false"> <label id="textFelmaleRB">Female</label><br>
-        <input type="button" onclick="addStudent()" value="Add">
-    </form>
-    </div>
-    <div id="tableArea">
-        <table id="studentTable" border="1">
-            <tr>
-                <th>Id</th>
-                <th>RollNo</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>isMale</th>
-                <th>Delete</th>
-            </tr>
-        </table>
-    </div>
+
+<head>
+    <link rel="stylesheet" href="/bootstrap-app/bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+</head>
+<style>
+    .form-inline {
+        padding: 5px;
+    }
+
+    #formArea {
+        margin-top: 10px;
+    }
+    
+</style>
+
+<body>
+    <center class="container-fluid">
+        <div id="formArea">
+            <form class="container">
+                <div class="form-inline pt-2">
+                    <label for="rollNo">RollNo: </label>
+                    <input type="number" id="rollNo" class="form-control" required>
+                </div><!-- <label id="rollReq"></label> -->
+
+                <div class="p-2 m-2 form-inline ">
+                    <label for="name">Name: </label>
+                    <input type="text" id="name" class="form-control" required="required" />
+                </div> <!-- <label id="nameReq"></label> -->
+
+                <div class="form-inline">
+                    <label for="age">Age: </label>
+                    <input type="number" id="age" class="form-control" required="required" />
+                </div><!-- label id="ageReq"></label> -->
+
+                <div class="form-inline">
+                    <label for="email">Email: </label>
+                    <input type="email" id="email" class="form-control" required="required" />
+                </div><!-- <label id="emailReq"></label> -->
+
+                <div class="form-inline">
+                    <label for="date">Date: </label>
+                    <input type="date" id="date" data-date-inline-picker="true" class="form-control"
+                        required="required" />
+                </div><!-- <label id="dateReq"></label> -->
+
+                <div class="form-inline">
+                    <label id="textMaleRB" class="radio-inline"><input type="radio" name="gender" id="rbMale"
+                            value="true" checked>Male</label>
+                    <label id="textFelmaleRB" class="radio-inline"><input type="radio" name="gender" id="rbFemale"
+                            value="false">Female</label>
+                </div>
+
+                <input id="addBtn" type="button" class="btn btn-primary" onclick="addStudent(displayStudentTable)" value="Add">
+            </form>
+        </div>
+
+        <br>
+
+        <h4 id="countText"> Found 0 Students</h4>
+
+        <br>
+
+        <div id="tableArea">
+            <img id="loadingImage">
+            <table id="studentTable" style="text-align: center" border="1" class="table table-hover">
+                <tr>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">RollNo</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Age</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Gender</th>
+                    <th class="text-center">Update</th>
+                    <th class="text-center">Delete</th>
+                </tr>
+            </table>
+        </div>
     </center>
 </body>
+
 </html>
 <script src="../../jquery-3.4.1.js"></script>
 <script src="formValidator.js"></script>
