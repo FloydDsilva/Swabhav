@@ -1,3 +1,8 @@
+var tr = 0
+var loadingImage = document.getElementById('loadingImage')
+function loadSpinner () {
+    loadingImage.src = "loading.gif"
+}
 function displayStudentTable() {
     var ref = $(".refreshRow")
     if (ref) {
@@ -5,8 +10,7 @@ function displayStudentTable() {
         ref.remove()
     }
     console.log("In Display")
-    var loadingImage = document.getElementById('loadingImage')
-    loadingImage.src = "loading.gif"
+      
     //$("#addBtn").attr("disabled", true)
     $.ajax({
         type: "GET",
@@ -14,7 +18,8 @@ function displayStudentTable() {
         url: "http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students",
         dataType: "json",
         success: function (data) {
-            setTimeout(hideImage, 1000)
+            hideImage()
+            $("#addBtn").attr("disabled",false)
             console.log(data)
             var students = data
             $("#countText").html("<h4>Found <span class='badge'>" + students.length + "</span> Students</h4>")
@@ -23,12 +28,17 @@ function displayStudentTable() {
             console.log(students) */
             students.forEach(student => {
                 console.log("TR" + student.id)
-                $('#studentTable').append("<tr class='refreshRow' id='TR" + student.id + "'><td>" + student.id + "</td><td>" + student.rollNo + "</td> <td>" + student.name + "</td> <td >" + student.age + "</td> <td >" + student.email + "</td> <td>" + student.date + "</td> <td>" + showGender(student.isMale) + "</td> <td><button id='edit" + student.id + "'>Edit</button> </td><td><button class='glyphicon glyphicon-remove deleteBtn' id='" + student.id +
+                $('#studentTable').append("<tr class='refreshRow' id='TR" + student.id + "'><td>" + student.id + "</td><td>" + student.rollNo + "</td> <td>" + student.name + "</td> <td >" + student.age + "</td> <td >" + student.email + "</td> <td>" + student.date + "</td> <td>" + showGender(student.isMale) + "</td> <td><button class='editBtns' id='edit" + student.id + "'>Edit</button> </td><td><button class='glyphicon glyphicon-remove deleteBtn' id='" + student.id +
                     "'/></td> </tr>")
                 /* console.log($("#TR" + student.id)) */
                 $("#edit" + student.id).on('click', function () {
-                    
+                    $(".editBtns").attr("disabled", true)
+                    tr = $(this).parents('tr')
+                    tr.addClass("selectedRow")
+                    //console.log(tr)
+                    /* tr.addClass('selected') */
                     updateStudentForm(student)
+                    //updateStudent(student, displayStudentTable)
                 })
             });
             $("#addBtn").attr("disabled", false)
@@ -39,9 +49,14 @@ function displayStudentTable() {
     })
 
 }
-displayStudentTable()
+loadSpinner()
+setTimeout(displayStudentTable,2000)
+
 $('#studentTable').on('click', 'button.deleteBtn', function () {
-    deleteStudent(this.id, displayStudentTable)
+    var deleteConf = confirm("Do you want to delete?")
+    if (deleteConf) {
+        deleteStudent(this.id, displayStudentTable)
+    }
 });
 
 function hideImage() {
@@ -56,7 +71,8 @@ function showGender(isMale) {
 }
 
 function updateStudentForm(student) {
-    
+    $("#buttonArea").append("<button id='updateBtn' type='button' class='btn btn-primary'> Update</button>")
+    $("#buttonArea").append("<button id='cancelBtn' type='button' class='btn btn-danger'> Cancel</button>")
     $("#rollNo").val(student.rollNo)
     $("#name").val(student.name)
     $("#age").val(student.age)
@@ -67,7 +83,26 @@ function updateStudentForm(student) {
     } else {
         $("#rbFemale").prop("checked", true)
     }
+    var updateBtn = $("#updateBtn")
+    if (updateBtn) {
+        updateBtn.on('click', function () {
+            console.log(student.id)
+            updateStudent(student.id, displayStudentTable)
+
+        })
+    }
+    var cancelBtn = $("#cancelBtn")
+    if (cancelBtn) {
+        cancelBtn.on('click', function () {
+            console.log("Inside", tr)
+            cancelEdit()
+        })
+    }
 }
-function clearForm () {
+
+function clearForm() {
+    $(".editBtns").attr("disabled", false)
+    tr.removeClass("selectedRow")
     $(".form-control").val("")
+    $("#rbMale").prop("checked", true)
 }

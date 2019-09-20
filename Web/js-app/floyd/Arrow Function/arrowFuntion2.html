@@ -1,0 +1,26 @@
+<!-- Arrow Function version of Pattern/asyncPattern4.html -->
+<script>
+    let cubeEven = n => new Promise((resolve, reject) => {
+        (n % 2 == 0) ? resolve({
+            data: n ** 3
+        }): reject({
+            msg: "Not Even"
+        })
+    })
+
+    cubeEven(2)
+        .then((r) => {
+            console.log(r.data)
+        })
+        .catch((m) => {
+            console.log(m.msg)
+        })
+
+    cubeEven(3)
+        .then((r) => {
+            console.log(r.data)
+        })
+        .catch((m) => {
+            console.log(m.msg)
+        })
+</script>

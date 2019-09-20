@@ -11,7 +11,9 @@
     #formArea {
         margin-top: 10px;
     }
-    
+    .selectedRow{
+        background-color: cornflowerblue !important;
+    }
 </style>
 
 <body>
@@ -51,7 +53,10 @@
                             value="false">Female</label>
                 </div>
 
-                <input id="addBtn" type="button" class="btn btn-primary" onclick="addStudent(displayStudentTable)" value="Add">
+                <div id="buttonArea" class="form-inline">
+                    <input id="addBtn" type="button" class="btn btn-primary" onclick="addStudent(displayStudentTable)"
+                        value="Add">
+                </div>
             </form>
         </div>
 
