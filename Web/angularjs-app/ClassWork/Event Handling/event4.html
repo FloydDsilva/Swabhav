@@ -1,0 +1,64 @@
+<html>
+<style>
+    #optionArea {
+        width: 600px;
+        padding-bottom: 40px;
+    }
+</style>
+
+<head>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+
+<body>
+    <center ng-app='studentModule' ng-controller='studentController'>
+        <div id="mainArea">
+            <button ng-click='loadStudents()'>Load</button>
+            <div id="optionArea">
+                <span style="float: left" id="searchArea">
+                    Search:<input type="text" ng-model="searchText">
+                </span>
+                <span style="float: right" id="filterArea">
+                    Sort By:<input type="radio" name="sortOption" ng-model="sortOption" value="none"> None
+                    <input type="radio" name="sortOption" ng-model="sortOption" value="name"> Name
+                    <input type="radio" name="sortOption" ng-model="sortOption" value="cgpa"> CGPA
+                </span>
+            </div>
+            <div id="displayStudents">
+                <article id="studentDetail" ng-repeat="student in students | filter:searchText | orderBy:sortOption"
+                    style="border: 1px solid; box-sizing: content-box; width: 400px">
+                    <p>{{student.id}}</p>
+                    <img height="250px" width="200px" ng-src="{{student.img}}">
+                    <p>{{student.name}}</p>
+                    <p>{{student.age}}</p>
+                    <p>{{student.cgpa}}</p>
+                    <p>{{student.gender}}</p>
+                </article>
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>
+<script>
+    function Student(id, name, img, age, cgpa, gender) {
+        this.id = id
+        this.name = name
+        this.img = img
+        this.age = age
+        this.cgpa = cgpa
+        this.gender = gender
+    }
+    angular.module('studentModule', [])
+        .controller('studentController', function ($scope) {
+            $scope.loadStudents = function () {
+                var s1 = new Student(1, "IronMan", "download.jpg", 48, 7.8, "Male")
+                var s2 = new Student(2, "Captain America", "ca.jpg", 38, 6.5, "Male")
+                var s3 = new Student(3, "Black Widow", "bw.jpg", 34, 5.5, "Female")
+                var s4 = new Student(4, "Thor", "thor.jpg", 36, 6.3, "Male")
+                var s5 = new Student(5, "Hulk", "hulk.jpg", 51, 7.2, "Male")
+                $scope.students = [s1, s2, s3, s4, s5]
+                $scope.searchText = ""
+            }
+        })
+</script>

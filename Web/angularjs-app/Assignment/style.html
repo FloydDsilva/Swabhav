@@ -1,0 +1,26 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div ng-style="myObj">
+    <center><h1 >ng-style</h1></center>
+    <p >The ng-style directive specifies the style attribute for the HTML element.
+        The value of the ng-style attribute must be an object, or an expression returning an object.
+        The object consists of CSS properties and values, in key value pairs.
+    </p>
+</div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.myObj = {
+                "color": "white",
+                "background-color": "coral",
+                "font-size": "30px",
+                "padding": "50px"
+            }
+        });
+    </script>
+
+</body>
+
+</html>

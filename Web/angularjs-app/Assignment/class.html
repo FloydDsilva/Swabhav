@@ -1,0 +1,41 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+    .sky {
+        color: white;
+        background-color: lightblue;
+        padding: 20px;
+        font-family: "Courier New";
+    }
+
+    .tomato {
+        background-color: coral;
+        padding: 40px;
+        font-family: Verdana;
+    }
+</style>
+
+<body ng-app="">
+
+    <p>Choose a class:</p>
+
+    <select ng-model="home">
+        <option value="sky">Sky</option>
+        <option value="tomato">Tomato</option>
+    </select>
+
+    <div ng-class="home">
+        <h1>Welcome Home!</h1>
+        <p>I like it!</p>
+        <p>The <h5>ng-class</h5> directive dynamically binds one or more CSS classes to an HTML element. The value of the
+            ng-class directive can be a string, an object, or an array. If it is a string, it should contain one or
+            more, space-separated class names. As an object, it should contain key-value pairs, where the key is the
+            class name of the class you want to add, and the value is a boolean value. The class will only be added if
+            the value is set to true. As an array, it can be a combination of both. Each array element can be either a
+            string, or an object, described as above.
+        </p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <script src="/angularjs-app/angular-js.js"></script>
+    </head>
+    <body ng-app=''>
+        <div ng-init="vrb='Hello ng-bind'">
+            Hello, <span ng-bind="vrb"></span>
+        </div>
+        ng-bind is better cuz {{}} could be noticed by people for milliseconds
+        <div ng-init="variable='Hello expression'">
+            Hello, {{variable}}
+        </div>
+    </body>
+</html>
