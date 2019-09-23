@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+
+<body ng-app="buttonModule" ng-controller="buttonController">
+    <center>
+        <div id="sliderArea">
+            <input type="range" min="1" max="100" ng-change=refreshButtons() ng-model="sliderValue" id="myRange">
+            <!-- by using $watch
+            <input type="range" min="1" max="100" ng-model="sliderValue" id="myRange"> -->
+            <p>{{sliderValue}}</p>
+        </div>
+        <div id="buttonArea">
+            <button ng-repeat='t in buttons' ng-click=displayNumber(t)>{{t}}</button>
+        </div>
+    </center>
+</body>
+
+</html>
+<script>
+    angular.module('buttonModule', [])
+        .controller('buttonController', ['$scope', function ($scope) {
+            $scope.sliderValue = 1
+            $scope.buttons = [1]
+            $scope.refreshButtons = function () {
+                $scope.buttons.length = 1
+                for (let i = 2; i <= $scope.sliderValue; i++) {
+                    $scope.buttons.push(i)
+                }
+            }
+            $scope.displayNumber = (indx) => console.log(indx)
+            /* $scope.$watch('sliderValue',function (newValue) {
+                $scope.buttons=new Array(newValue)
+            },true) */
+            /* $scope.$watch(function (scope) {
+                    return scope.sliderValue
+                },
+                function (newValue, oldValue) {
+                    $scope.buttons.length=1
+                    for(let i=2;i<=$scope.sliderValue;i++){ $scope.buttons.push(i) }
+                }
+            ); */
+        }])
+</script>

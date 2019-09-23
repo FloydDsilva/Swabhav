@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumberAPI</title>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+<body ng-app='NumberAPI.module' ng-controller='factController'>
+    <input ng-model=num type="text"><button ng-click=getFact()>Search</button>
+    <p ng-repeat="fact in facts">{{fact}}</p>
+</body>
+</html>
+<script>
+    angular.module('NumberAPI.module',[])
+    .controller('factController',['$scope','factService',function ($scope,factService) {
+        $scope.facts=[]
+        factService.getPreviousFacts()
+        .then((r)=>$scope.facts=r)
+        $scope.getFact=()=>{
+            factService.getFact($scope.num)
+            .then((r)=>$scope.facts=r)
+        }
+    }])
+    </script>
+    <script src="/angularjs-app/ClassWork/Nuber API/numberAPIService.js"></script>

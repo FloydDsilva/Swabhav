@@ -4,6 +4,12 @@
         width: 600px;
         padding-bottom: 40px;
     }
+
+    #studentDetail {
+        border: 1px solid;
+        box-sizing: content-box;
+        width: 400px;
+    }
 </style>
 
 <head>
@@ -26,7 +32,7 @@
             </div>
             <div id="displayStudents">
                 <article id="studentDetail" ng-repeat="student in students | filter:searchText | orderBy:sortOption"
-                    style="border: 1px solid; box-sizing: content-box; width: 400px">
+                    style="background-color:{{student|myFilter}}">
                     <p>{{student.id}}</p>
                     <img height="250px" width="200px" ng-src="{{student.img}}">
                     <p>{{student.name}}</p>
@@ -61,4 +67,14 @@
                 $scope.searchText = ""
             }
         })
+        .filter('myFilter', [function () {
+            return (student) => {
+                if (student.cgpa > 7) {
+                    return "green"
+                } else if (student.cgpa > 5.75) {
+                    return "yellow"
+                }
+                return "red"
+            }
+        }])
 </script>

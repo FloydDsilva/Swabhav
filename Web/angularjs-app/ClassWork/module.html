@@ -25,6 +25,7 @@
 <script>
     angular.module('modA', ['modB'])
             .controller('controllerA',function ($rootScope,$scope) {
+                //debugger
                 console.log("Inside Controller A");
                 $scope.msg="Controller A says Hello"
                 $rootScope.company="Aurion Pro"

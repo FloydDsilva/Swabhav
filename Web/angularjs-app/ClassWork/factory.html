@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory</title>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+
+<body ng-app='Math.module'>
+    <center>
+        <section ng-controller='cubeController'>
+            CubeEven: <input type="text" ng-model="cube"> <button ng-click=cubeEven()>Ok</button><br>
+            <p>{{"Result:"+result}}</p>
+        </section>
+        <hr>
+        <section ng-controller='primeController'>
+            Is Prime: <input type="text" ng-model="prime"><button ng-click=isPrime()>Ok</button><br>
+            <p>{{"Result:"+result}}</p>
+        </section>
+    </center>
+</body>
+
+</html>
+<script>
+    /// <reference path="/angularjs-app/angular-js.js" />
+    angular.module('Math.module',[])
+    .factory('MathService',['$log',function ($log) {
+        $log.info("Inside Service");
+        var service={}
+        service.cubeEven=(n)=>(n%2==0)?n**3:"Not Even Number"
+        service.isPrime=(n)=>{
+            for (let i =2; i < n/2; i++) {
+                if(n%i==0)
+                    return "Not Prime Number"
+            }
+            return "Prime Number"
+        }
+        return service
+    }])
+
+    angular.module('Math.module')
+    .controller('cubeController',['$scope','MathService',function ($scope,MathService) {
+        $scope.cubeEven=function () {
+            $scope.result=MathService.cubeEven($scope.cube)
+        } 
+    }])
+    angular.module('Math.module')
+    .controller('primeController',['$scope','MathService',function ($scope,MathService) {
+        $scope.isPrime=function () {
+            $scope.result=MathService.isPrime($scope.prime)
+        } 
+    }])
+</script>

@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+
+<body ng-app='mod'>
+    <div id="mainArea" ng-controller='ctrl'>
+        <div id="propertyArea">
+            Text: <input id="inputText" type="text" ng-model='text'><br>
+            Font-Size: <input id="fontSize" type="text" ng-model='size'>px<br>
+            Fore Color: <select id="foreColor" ng-model='foreColor' ng-options='clr.colorText for clr in clrArray'>
+                <!-- <option selected value="black">--select--</option>
+                <option value="#eb4034">Red</option>
+                <option value="#34ebcc">Blue</option>
+                <option value="#7beb31">Green</option>
+                <option value="#e8d931">Yellow</option> -->
+            </select>
+            <br>
+            Background Color: <select id="backgroundColor" ng-model='bgColor'
+                ng-options='bgclr.colorText for bgclr in bgclrArray'>
+            </select>
+        </div>
+        <br>
+        <div id="resultArea" ng-bind='text'
+            style="font-size:{{size+'px'}};color:{{foreColor.value}};background-color:{{bgColor.value}}">
+        </div>
+    </div>
+</body>
+<script>
+    angular.module('mod', [])
+        .controller('ctrl', ['$scope', function ($scope) {
+            $scope.text = ""
+            $scope.size = ""
+            $scope.foreColor = ""
+            $scope.bgColor = ""
+           /*  $scope.styleObj = {
+                "font-size":$scope.size+"px",
+                "color":"red",
+                "background-color": "blue"
+            } */
+            $scope.clrArray = [{
+                    colorText: "Red",
+                    value: '#eb4034'
+                },
+                {
+                    colorText: "Blue",
+                    value: '#34ebcc'
+                },
+                {
+                    colorText: "Green",
+                    value: '#7beb31'
+                },
+                {
+                    colorText: "Yellow",
+                    value: '#e8d931'
+                }
+            ]
+            $scope.bgclrArray = [{
+                    colorText: "Red",
+                    value: '#eb4034'
+                },
+                {
+                    colorText: "Blue",
+                    value: '#34ebcc'
+                },
+                {
+                    colorText: "Green",
+                    value: '#7beb31'
+                },
+                {
+                    colorText: "Yellow",
+                    value: '#e8d931'
+                }
+            ]
+        }])
+</script>

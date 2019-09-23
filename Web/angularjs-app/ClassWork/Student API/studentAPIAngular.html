@@ -1,0 +1,16 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+<body ng-app='Student.module' ng-controller='studentController'>
+    
+</body>
+</html>
+<script>
+    angular.module('Student.module',[])
+    .controller('studentController',['$scope','studentService',function ($scope,studentService) {
+        studentService.getStudents().then((r)=>{console.log(JSON.parse(r))})
+    }])    
+    </script>
+    <script src="studentAPIService.js"></script>
