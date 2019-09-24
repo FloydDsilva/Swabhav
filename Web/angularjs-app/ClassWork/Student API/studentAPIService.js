@@ -3,8 +3,13 @@ angular.module('Student.module')
     var factory = {}
     
     factory.getStudents= function () {
-        return $http("http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students")
+        return $http.get("http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students")
     }
+
+    factory.addStudent=function (student) {
+        return $http.post("http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students",JSON.stringify(student))
+    }
+
 
     return factory
 }])

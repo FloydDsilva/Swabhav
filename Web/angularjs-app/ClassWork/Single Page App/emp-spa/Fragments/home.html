@@ -1,0 +1,30 @@
+<center>
+    <a href="#/addEmployee">Add Employee</a>
+
+    <div id="tableArea">
+        <!-- <img id="loadingImage"> -->
+        <table id="studentTable" style="text-align: center" border="1" class="table table-hover">
+            <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Job</th>
+                <th class="text-center">Salary</th>
+                <th class="text-center">Update</th>
+                <th class="text-center">Delete</th>
+            </tr>
+            <tr ng-repeat='employee in employees'>
+                <td class="text-center">{{employee.id}}</td>
+                <td class="text-center">{{employee.name}}</td>
+                <td class="text-center">{{employee.age}}</td>
+                <td class="text-center">{{employee.gender}}</td>
+                <td class="text-center">{{employee.job}}</td>
+                <td class="text-center">{{employee.salary}}</td>
+                <td class="text-center"><button id=u{{employee.id}}>Update</button></td>
+                <td class="text-center"><button id=d{{employee.id}}
+                        class="glyphicon glyphicon-remove btn btn-danger"></button></td>
+            </tr>
+        </table>
+    </div>
+</center>

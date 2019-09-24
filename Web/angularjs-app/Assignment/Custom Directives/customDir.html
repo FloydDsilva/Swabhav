@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Directory</title>
+    <script src="/angularjs-app/angular-js.js"></script>
+</head>
+<body ng-app='Directive.module' ng-controller='myController' >
+    <aurionpro-header></aurionpro-header>
+    <aurionpro-footer></aurionpro-footer>
+    <aurionpro-footer year="2020"></aurionpro-footer>
+</body>
+</html>
+<script>
+    angular.module('Directive.module',[])
+    .directive('aurionproHeader',function () {
+        return{
+            /* link:apHeaderFunc, */
+            template:'<header><h1>AurionHeader</h1></header>',
+            restrict:'E'
+        }
+    })
+    .directive('aurionproFooter',function () {
+    function apFooterFunc ($scope,$element,$attr) {
+        $scope.year=$attr.year
+    }
+    return{
+    link:apFooterFunc,
+    scope:true,
+    template:'<footer><h5>AurionFooter {{year}}</h5></footer>'
+    }
+    })
+    .controller('myController',['$scope',function ($scope) {
+        
+    }])
+
+</script>
