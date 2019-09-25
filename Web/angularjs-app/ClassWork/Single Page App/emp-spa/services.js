@@ -1,6 +1,15 @@
 angular.module('emp.module')
     .factory('empFactory',function () {
         var factory = {}
+        factory.jobs = ['Programmer', 'Analyst', 'Manager']
+        factory.Employee=function(name, age, gender, job, salary) {
+            this.id = Date.now().toString()
+            this.name = name
+            this.age = age
+            this.gender = gender
+            this.job = job
+            this.salary = salary
+        }
         factory.employees = [{
                 id: "1569325787029",
                 name: "Ronaldo",
@@ -50,6 +59,45 @@ angular.module('emp.module')
                 salary: 2500
             }
         ]
-        
+        factory.addEmployee=(employee)=>{(factory.employees).unshift(employee); console.log(factory.employees)}
+        factory.editEmployee=(employeeId)=>{
+            console.log("Edit",employeeId)
+            for(let i=0;i<factory.employees.length;i++){
+                if(factory.employees[i].id==employeeId){
+                    return factory.employees[i]
+                }
+            }
+        }
+        factory.updateEmployee=(employee)=>{
+            for(let i=0;i<factory.employees.length;i++){
+                if(factory.employees[i].id==employee.id){
+                    factory.employees.splice(i,1,employee)
+                }
+            }
+            console.log(factory.employees)
+        }
+        factory.deleteEmployee=(employeeId)=>{
+            factory.employees=factory.employees.filter(e=>e.id!=employeeId)
+            alert("Deleted:"+employeeId)
+            console.log("After Deleting",factory.employees)
+        }
         return factory
+    });
+
+angular.module('emp.module')
+    .factory('authService', function () {
+        var auth={}
+        auth.admin={
+            username:"admin",
+            password:"admin"
+        }
+        auth.isLogged=false
+        auth.loggedUser=""
+        auth.login=function(username,password){
+            if(username==auth.admin.username&&password==auth.admin.password){
+                auth.isLogged=true
+                auth.loggedUser=username
+            }
+        }
+        return auth
     })

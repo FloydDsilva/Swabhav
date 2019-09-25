@@ -3,11 +3,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee</title>
     <link rel="stylesheet" href="/bootstrap-app/bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="/jquery-app/jquery-3.4.1.js"></script>  
+    <script src="/bootstrap-app/bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>  
     <script src="/angularjs-app/angular-js.js"></script>
     <script src="/angularjs-app/angular-route.js"></script>
     <script src="/angularjs-app/ClassWork/Single Page App/emp-spa/app.js"></script>
     <script src="/angularjs-app/ClassWork/Single Page App/emp-spa/services.js"></script>
     <script src="/angularjs-app/ClassWork/Single Page App/emp-spa/controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 </head>
 <style>
     .form-inline {
@@ -22,7 +29,27 @@
         background-color: cornflowerblue !important;
     }
 </style>
-<body ng-app='emp.module'>
+<body ng-app='emp.module' ng-controller='loginController'>
+    <nav class="navbar navbar-inverse" >
+        <div class="container-fluid" >
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Employee SPA</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#/home">Home</a></li>
+                <li><a href="#/addEmployee">Add Employee</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">{{logged}}</a></li>
+            </ul>
+        </div>
+    </nav>
         <div ng-view></div>
 </body>
 </html>
+<script>
+$(".nav a").on("click", function(){
+$(".nav").find(".active").removeClass("active");
+$(this).parent().addClass("active");
+});
+</script>

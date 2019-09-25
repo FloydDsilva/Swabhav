@@ -1,5 +1,5 @@
 <center>
-    <a href="#/addEmployee">Add Employee</a>
+    
 
     <div id="tableArea">
         <!-- <img id="loadingImage"> -->
@@ -21,10 +21,13 @@
                 <td class="text-center">{{employee.gender}}</td>
                 <td class="text-center">{{employee.job}}</td>
                 <td class="text-center">{{employee.salary}}</td>
-                <td class="text-center"><button id=u{{employee.id}}>Update</button></td>
-                <td class="text-center"><button id=d{{employee.id}}
-                        class="glyphicon glyphicon-remove btn btn-danger"></button></td>
+                <td class="text-center"><a href="#/updateEmployee/{{employee.id}}"><button
+                            id=u{{employee.id}}
+                            class="btn">Edit</button></a></td>
+                <td class="text-center" ng-controller='deleteController'><a href="#/"><button class="glyphicon glyphicon-remove btn btn-danger"
+                        ng-click='deleteEmployee(employee.id)'></button></a></td>
             </tr>
         </table>
     </div>
 </center>
+<a href="#/login">login</a>

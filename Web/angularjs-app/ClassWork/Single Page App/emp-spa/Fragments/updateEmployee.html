@@ -1,0 +1,39 @@
+<center class="container-fluid">
+    <div id="formArea">
+        <form class="container" ng-init="gender='Male'">
+            <div class="form-inline">
+                <label for="id">Id: </label>
+                <label id="id">{{emp.id}}</label>
+            </div><!-- label id="ageReq"></label> -->
+            <div class="p-2 m-2 form-inline ">
+                <label for="name">Name: </label>
+                <input type="text" ng-model='name' id="name" class="form-control" required="required" />
+            </div> <!-- <label id="nameReq"></label> -->
+
+            <div class="form-inline">
+                <label for="age">Age: </label>
+                <input type="number" ng-model='age' id="age" class="form-control" required="required" />
+            </div><!-- label id="ageReq"></label> -->
+
+            <div class="form-inline">
+                <label for="job">Job: </label>
+                <select id="job" ng-model='job' ng-options='job for job in jobs'></select><br>
+            </div><!-- <label id="emailReq"></label> -->
+            <div class="form-inline">
+                <label for="salary">Salary: </label>
+                <input type="salary" ng-model='salary' id="salary" class="form-control" required="required" />
+            </div><!-- <label id="emailReq"></label> -->
+
+            <div class="form-inline">
+                <label id="textMaleRB" class="radio-inline"><input type="radio" name="gender" ng-model='gender'
+                        id="rbMale" value="Male" checked>Male</label>
+                <label id="textFelmaleRB" class="radio-inline"><input type="radio" name="gender" ng-model='gender'
+                        id="rbFemale" value="Female">Female</label>
+            </div>
+
+            <div id="buttonArea" class="form-inline">
+                <input id="updateBtn" type="button" class="btn btn-primary" ng-click="updateEmployee()" value="Update">
+            </div>
+        </form>
+    </div>
+</center>
