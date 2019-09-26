@@ -92,12 +92,18 @@ angular.module('emp.module')
             password:"admin"
         }
         auth.isLogged=false
-        auth.loggedUser=""
+        auth.loggedUser=localStorage.getItem("empLogged")
         auth.login=function(username,password){
             if(username==auth.admin.username&&password==auth.admin.password){
                 auth.isLogged=true
+                localStorage.setItem("empLogged",username)
                 auth.loggedUser=username
             }
+        }
+        auth.logout=function () {
+            auth.isLogged=false
+            auth.loggedUser=""
+            localStorage.removeItem("empLogged")
         }
         return auth
     })

@@ -3,6 +3,7 @@ angular.module('emp.module')
         console.log("in Home")
         $scope.employees=[]
         $scope.employees=empFactory.employees
+        console.log("Employees",$scope.employees)
         //$scope.deleteEmployee=()=>{empFactory.deleteEmployee()}
     }])
     .controller('addController',['$scope','$rootScope','empFactory',function ($scope,$rootScope,empFactory) {
@@ -13,7 +14,7 @@ angular.module('emp.module')
             console.log(employee)
             empFactory.addEmployee(employee)
             window.location.href = "#/home"
-        }
+            }
             else{
                 window.location.href = "#/login"
             }
@@ -77,7 +78,7 @@ angular.module('emp.module')
         };
     }])
     .controller('loginController',['$scope','$rootScope','authService',function ($scope,$rootScope,authService) {
-        $rootScope.logged=""
+        $rootScope.logged=authService.loggedUser
         $scope.login=()=>{
             authService.login($scope.username, $scope.password)
             if(authService.isLogged){
@@ -85,6 +86,12 @@ angular.module('emp.module')
                 console.log($scope.logged)
                 window.location.href = "#/home"
             }
+        }
+        $scope.logout=()=>{
+            console.log("logged out")
+            authService.logout()
+            $rootScope.logged = ""
+            window.location.href = "#/home"
         }
         console.log($scope.logged)
     }])

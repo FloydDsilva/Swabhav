@@ -41,6 +41,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">{{logged}}</a></li>
+                <li ng-show='logged'><a ng-click='logout()'><span class="glyphicon glyphicon-log-out">
+                            Logout</span></a></li>
             </ul>
         </div>
     </nav>
