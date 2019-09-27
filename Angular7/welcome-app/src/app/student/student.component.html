@@ -1,0 +1,13 @@
+<section class="container">
+  <h1 [innerText]='"Student"'></h1>
+  <h2 [innerText]="student['name']"></h2>
+  <img [src]="student.photo" [height]="imgHeight" [width]="imgWidth">
+  <h2 [style.color]="convertCGPA(student['cgpa'])" [innerText]="student['cgpa']"></h2>
+  <button class="btn" (click)="loadStudents()">Load Students</button>
+  <section *ngFor="let std of students">
+    <h5 [innerText]="std['rollNo']"></h5>
+    <h5 [innerText]="std['name']"></h5>
+    <img [src]="std.photo" [height]="imgHeight" [width]="imgWidth">
+    <h5 [style.color]="convertCGPA(std['cgpa'])" [innerText]="std['cgpa']"></h5>
+  </section>
+</section>

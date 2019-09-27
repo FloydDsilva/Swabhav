@@ -1,0 +1,6 @@
+<section>
+    <button (click)="makeBalls()">LoadBalls</button>
+</section>
+<article>
+    <button *ngFor="let ball of balls" [innerText]="ball.Id"></button>
+</article>

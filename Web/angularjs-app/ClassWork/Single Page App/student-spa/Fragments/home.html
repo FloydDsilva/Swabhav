@@ -1,0 +1,36 @@
+<center>
+    
+
+    <div id="tableArea">
+        <!-- <img id="loadingImage"> -->
+        <table id="studentTable" style="text-align: center" border="1" class="table table-hover">
+            <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">RollNo</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Update</th>
+                <th class="text-center">Delete</th>
+            </tr>
+            <tr ng-repeat='student in students'>
+                <td class="text-center">{{student.id}}</td>
+                <td class="text-center">{{student.rollNo}}</td>
+                <td class="text-center">{{student.name}}</td>
+                <td class="text-center">{{student.age}}</td>
+                <td class="text-center">{{student.email}}</td>
+                <td class="text-center">{{student.date}}</td>
+                <td class="text-center">{{student.isMale}}</td>
+                <td class="text-center"><a
+                        href="#/updateStudent/{{student.id}}"><button
+                            id=u{{student.id}}
+                            class="btn">Edit</button></a></td>
+                <td class="text-center" ng-controller='deleteController'><a href="#/"><button class="glyphicon glyphicon-remove btn btn-danger"
+                        ng-click="deleteStudent(student.id)"></button></a></td>
+            </tr>
+        </table>
+    </div>
+</center>
+<a href="#/login">login</a>

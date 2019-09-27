@@ -10,6 +10,9 @@ angular.module('Student.module')
         return $http.post("http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students",JSON.stringify(student))
     }
 
+    factory.deleteStudent=function (studentId) {
+        return $http.delete("http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students"+studentId)
+    }
 
     return factory
 }])
