@@ -6,15 +6,18 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { StudentComponent } from './student/student.component';
 import { BlueBallComponent } from './blueBallGame/blueBall.component';
 import { TwoWayComponent } from './twoway/twoway.component';
+import { MathService } from './service/MathService';
+import { QuestionService } from './service/QuestionService';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
-    WelcomeComponent,StudentComponent,BlueBallComponent,TwoWayComponent
+    WelcomeComponent,StudentComponent,BlueBallComponent,TwoWayComponent,QuestionComponent
   ],
   imports: [
     BrowserModule,FormsModule
   ],
-  providers: [],
+  providers: [MathService,QuestionService],
   bootstrap: [WelcomeComponent]
 })
 export class AppModule { }

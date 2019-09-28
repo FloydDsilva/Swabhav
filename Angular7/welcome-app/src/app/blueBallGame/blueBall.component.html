@@ -1,6 +1,13 @@
-<section>
-    <button (click)="makeBalls()">LoadBalls</button>
-</section>
-<article>
-    <button *ngFor="let ball of balls" [innerText]="ball.Id"></button>
-</article>
+<div *ngIf="gameStatus">
+  <section>
+    <button (click)="makeBalls()">Start Game</button>
+  </section>
+  <article>
+    <button *ngFor="let ball of balls" [innerText]="ball.Id" (click)="ballClick(ball)"
+      [style.background]="ball.Color" style="border-radius: 50%; border: 1px solid black; margin: 5px"  class="btn"></button>
+  </article>
+</div>
+<div *ngIf="!gameStatus">
+    <h5>Game Over!</h5>
+    <h2 [innerText]="result"></h2>
+</div>
