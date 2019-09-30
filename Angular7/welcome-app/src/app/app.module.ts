@@ -9,13 +9,20 @@ import { TwoWayComponent } from './twoway/twoway.component';
 import { MathService } from './service/MathService';
 import { QuestionService } from './service/QuestionService';
 import { QuestionComponent } from './question/question.component';
+import { MypipePipe } from './customPipe/mypipe.pipe';
+import { CustomPipeComponent } from './customPipe/pipe.component';
+import { ParentChildComponent } from './parentChild/parentChild.component';
+import { ToggleBtnComponent } from './parentChild/toggle/toggle.component';
+import { RatingComponent } from './parentChild/rating/rating.component.';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
-    WelcomeComponent,StudentComponent,BlueBallComponent,TwoWayComponent,QuestionComponent
+    WelcomeComponent,StudentComponent,BlueBallComponent,TwoWayComponent,QuestionComponent,CustomPipeComponent, MypipePipe ,ParentChildComponent,ToggleBtnComponent,
+    RatingComponent
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule,FormsModule,MatTooltipModule
   ],
   providers: [MathService,QuestionService],
   bootstrap: [WelcomeComponent]

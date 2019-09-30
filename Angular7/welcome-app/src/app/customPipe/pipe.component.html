@@ -1,0 +1,4 @@
+<section>
+    <h5>Custom Pipe</h5>
+    <p *ngFor="let employee of employees">Id:{{employee.id}} Name:{{employee.name | mypipe:employee.gender}} Gender:{{employee.gender}}</p>
+</section>

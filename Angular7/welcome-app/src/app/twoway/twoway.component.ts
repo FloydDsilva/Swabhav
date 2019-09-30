@@ -9,6 +9,7 @@ export class TwoWayComponent {
     firstName: String
     lastName: String
     num: number
+    primeColor:String
     constructor(private mathSer: MathService) {
         this.firstName = ''
         this.lastName = ""
@@ -24,11 +25,11 @@ export class TwoWayComponent {
                 console.log("Green")
                 return "green"
             }
-            return "red"
             console.log("Red")
+            return "red"
         }
     }
-    isPrimeAsync() {
+    /* isPrimeAsync() {
         if (this.num) {
             this.mathSer.checkPrimeAsync(this.num).then((r) => {
                 console.log(r)
@@ -40,5 +41,25 @@ export class TwoWayComponent {
                 return "red"
             })
         }
+    } */
+    isPrimeAsync(eventNum){
+        console.log("In 2wayComp")
+        if(eventNum){
+            console.log("Num:",eventNum)
+            this.mathSer.checkPrimeAsync(eventNum).subscribe((d)=>{
+                console.log(d)
+                if (d) {
+                    this.primeColor="green"
+                }
+                else{
+                    this.primeColor = "red"
+                }
+            })
+        }
+        else{
+            console.log("Else Num:",eventNum)
+            this.primeColor=""
+        }
+
     }
 }

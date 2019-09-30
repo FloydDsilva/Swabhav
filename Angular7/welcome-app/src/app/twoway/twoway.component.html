@@ -9,5 +9,7 @@
     <hr class="col-md-12" style="background: black">
 </div>
 <section>
-    IsPrime: <input type="number" [(ngModel)]="num" [style.background]="isPrimeAsync()">
+    IsPrime: <input type="number" [ngModel]="num" (ngModelChange)="isPrimeAsync($event)"
+      [style.background]="primeColor">
+    <!-- <button (click)="isPrimeAsync()"></button> -->
 </section>
