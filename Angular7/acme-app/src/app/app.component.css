@@ -1,0 +1,12 @@
+.navbar{
+    justify-content: space-between
+}
+.menu-spacer{
+    padding: 3rem
+}
+.nav-item-spacer{
+    padding: 1rem
+}
+.nav-item{
+    color: white
+}

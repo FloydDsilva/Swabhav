@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector:"aurionpro-rating",

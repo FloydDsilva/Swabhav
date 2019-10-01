@@ -1,0 +1,5 @@
+<section>
+  Input: <input type="text" [(ngModel)]="numbr">
+  <button (click)="getFact(numbr)">Get Fact</button>
+  <p *ngFor="let fact of facts">{{fact}}</p>
+</section>

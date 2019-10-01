@@ -1,6 +1,6 @@
 <section>
-    <aurionpro-toggle [textContent]='"Toggler"' [onStateColor]='"green"' [offStateColor]='"red"' (stateChange)="stateChangeHandler($event)"></aurionpro-toggle>
+    <aurionpro-toggle [textContent]='"Toggler"' [onStateColor]='"green"' [offStateColor]='"red"' (stateChange)="stateChangeHandler($event)" matTooltip={{rating}}></aurionpro-toggle>
     <h4>Status:{{status}}</h4>
-    <aurionpro-rating [rating]=3.5 (showRating)="showRatingHandler($event)"></aurionpro-rating>
+    <aurionpro-rating [rating]=3.5 (showRating)="showRatingHandler($event)" matTooltip={{rating}}></aurionpro-rating>
     <h4>{{rating}}</h4>
 </section>
