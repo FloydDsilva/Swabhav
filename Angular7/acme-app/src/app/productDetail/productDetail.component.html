@@ -1,3 +1,50 @@
-<p>
-  productDetail works!
-</p>
+<div class="productDetail" style="height: 540px">
+
+  <mat-toolbar color="primary">
+    <span>Product List : {{product.productName}}</span>
+  </mat-toolbar>
+
+  <!-- <div class="container" >
+    <h3 class="panel-title">Product List : {{product.productName}}</h3>
+  </div> -->
+
+  <section class="container dataContainer" >
+    <div class="row">
+      <div  class="col-md-6" >
+        <div class="row">
+          <div class="col-md-6">Name:</div>
+          <div class="col-md-6">{{product.productName}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Code:</div>
+          <div class="col-md-6">{{product.productCode}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Description:</div>
+          <div class="col-md-6">{{product.description}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Availibility:</div>
+          <div class="col-md-6">{{product.releaseDate}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Price:</div>
+          <div class="col-md-6">{{product.price|currency}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">5 Star Rating:</div>
+          <div class="col-md-6">
+            <aurionpro-star [rating]="product.starRating"></aurionpro-star>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"><img height="400px" width="250px"
+          [src]="product.imageUrl"></div>
+    </div>
+  </section>
+</div>
+        <footer class="panel-footer">
+          <div class="container"></div>
+          <button class="btn" routerLink="/productList"><label class="glyphicon glyphicon-chevron-left"></label>
+            Back</button>
+        </footer>

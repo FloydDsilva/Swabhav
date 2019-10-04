@@ -1,3 +1,42 @@
-<p>
-  productList works!
-</p>
+<div class="welcome">
+
+  <mat-toolbar color="primary">
+    <span>Product List</span>
+  </mat-toolbar>
+
+  <section>
+    <article id="filterArea" class="container">
+      <div class="row">
+      <div class="col-md-2"> Filter by:</div> <input type="text" [(ngModel)]="searchText">
+      </div>
+    </article>
+    <article class="container-fluid">
+      <div class="table-responsive">
+      <table class="table table-fixed table-border table-hover">
+        <thead>
+          <th><button class="btn btn-primary" (click)="hideImage()">{{showImage?'Hide':'Show'}} Image</button></th>
+          <th>Product</th>
+          <th>Code</th>
+          <th>Available</th>
+          <th>Price</th>
+          <th>5 Star Rating</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products|searchFilter:searchText ">
+            <td><img *ngIf="showImage" height="75px" width="125px" border="3" [src]="product.imageUrl"></td>
+            <td><a [routerLink]="['/productDetail',product.productId]" [innerText]="product.productName"></a></td>
+            <td [innerText]="product.productCode"></td>
+            <td [innerText]="product.releaseDate"></td>
+            <td>{{ product.price | currency }}</td>
+            <td>
+              <aurionpro-star [rating]="product.starRating"></aurionpro-star>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+    </article>
+  </section>
+
+</div>
