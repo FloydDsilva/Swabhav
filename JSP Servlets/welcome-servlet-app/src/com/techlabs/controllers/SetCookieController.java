@@ -17,17 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 public class SetCookieController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public SetCookieController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie color=new Cookie("color","red");
         PrintWriter out=response.getWriter();
@@ -39,9 +32,6 @@ public class SetCookieController extends HttpServlet {
         out.print("<a href=\"getCookie\">View</a>");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
