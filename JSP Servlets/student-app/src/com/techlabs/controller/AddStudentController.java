@@ -30,13 +30,15 @@ public class AddStudentController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		if(session.getAttribute("userName")!=null) {
+//		HttpSession session=request.getSession();
+//		if(session.getAttribute("userName")!=null) {
+//		RequestDispatcher view=request.getRequestDispatcher("view/AddStudent.jsp");
+//		view.forward(request, response);}
+//		else {
+//			response.sendRedirect("auth");
+//			}			
 		RequestDispatcher view=request.getRequestDispatcher("view/AddStudent.jsp");
-		view.forward(request, response);}
-		else {
-			response.sendRedirect("auth");
-			}			
+		view.forward(request, response);
 		}
 
 	/**
