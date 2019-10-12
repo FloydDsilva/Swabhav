@@ -1,7 +1,6 @@
 package com.techlabs.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,21 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.techlabs.model.Account;
 import com.techlabs.service.BankService;
 
 /**
- * Servlet implementation class RegistrationController
+ * Servlet implementation class TransactionController
  */
-@WebServlet("/registration")
-public class RegistrationController extends HttpServlet {
+@WebServlet("/transaction")
+public class TransactionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrationController() {
+    public TransactionController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +32,7 @@ public class RegistrationController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("get");
-		RequestDispatcher view=request.getRequestDispatcher("view/registration.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("view/transaction.jsp");
 		view.forward(request, response);
 	}
 
@@ -42,20 +40,24 @@ public class RegistrationController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("post");
-		String name=request.getParameter("name");
-		String password=request.getParameter("password");
-		String balance=request.getParameter("balance");
-		PrintWriter out=response.getWriter();
-		if(balance!=""&&password!=""&&name!="") {
-			System.out.println("Inside if");
-			try {
-				new BankService().addAccount(new Account(name, password, Float.parseFloat(balance)));
-				out.print("Account add Successful");
-			} catch (NumberFormatException | SQLException e) {
-				out.print(e.getMessage());
-				//e.printStackTrace();
-			}
+		float amount=Float.parseFloat(request.getParameter("amount"));
+		HttpSession session=request.getSession();
+		String name=(String) session.getAttribute("name");
+		String transaction=request.getParameter("transaction");
+		try {
+		if(transaction.equals("Deposit")) {
+				new BankService().deposit(name, amount);
+		}
+		else if(transaction.equals("Withdraw")) {
+			System.out.println("In trans with");
+			new BankService().withdraw(name, amount);
+		}
+		response.sendRedirect("profile");
+		} catch (SQLException e) {
+			request.setAttribute("message",e.getMessage());
+			RequestDispatcher view = request.getRequestDispatcher("view/transaction.jsp");
+			view.forward(request, response);
+			e.printStackTrace();
 		}
 	}
 
