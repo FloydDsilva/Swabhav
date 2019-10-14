@@ -1,26 +1,23 @@
-package com.techlabs.controller;
+package com.techlabs.controllers;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class WelcomeController
+ * Servlet implementation class HomeController
  */
-@WebServlet("/welcome")
-public class WelcomeController extends HttpServlet {
+public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WelcomeController() {
+    public HomeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +26,8 @@ public class WelcomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		if(session.getAttribute("name")!=null) {
-			response.sendRedirect("profile");
-		}
-		else {
-		RequestDispatcher view = request.getRequestDispatcher("view/welcome.jsp");
-		view.forward(request, response);
-		}
+		RequestDispatcher vew = request.getRequestDispatcher("home.jsp");
+		vew.forward(request, response);
 	}
 
 	/**

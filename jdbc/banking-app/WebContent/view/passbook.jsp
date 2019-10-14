@@ -8,9 +8,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Passbook</title>
+<link rel="stylesheet" href="assets/bootstrap-3.4.1-dist/css/bootstrap.css">
 </head>
 <body>
 <div class="container-fluid">
+		<a class="btn btn-primary" style="float: right;" href="passbookDownload"><label class="glyphicon glyphicon-download"></label>Download</a>
 		<table class="table table-hover">
 			<tr>
 			<thead>
@@ -18,14 +20,12 @@
 				<th>Amount</th>
 				<th>Transaction</th>
 				<th>Date</th>
-				<th>Edit</th>
-				<th>Delete</th>
 			</thead>
 			</tr>
 			<tbody>
 
 				<%
-					List<TransactionLog> transactions = (ArrayList<TransactionLog>) request.getAttribute("log");
+					List<TransactionLog> transactions = (ArrayList<TransactionLog>) request.getAttribute("transactions");
 					for (TransactionLog transaction : transactions) {
 				%>
 				<tr>

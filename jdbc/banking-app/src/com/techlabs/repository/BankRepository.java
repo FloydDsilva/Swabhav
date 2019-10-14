@@ -118,11 +118,11 @@ public class BankRepository {
 	public List<TransactionLog> getTransactions(String name) {
 		List<TransactionLog> transactions=new ArrayList<TransactionLog>();
 		try {
-			preparedStatement = connection.prepareStatement("Select balance from BankMaster where accName=?");
+			preparedStatement = connection.prepareStatement("Select * from BankTransaction where accName=?");
 			preparedStatement.setString(1, name);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				transactions.add(new TransactionLog(name, amount, transactionType, transactionDate));
+				transactions.add(new TransactionLog(resultSet.getString("accName"), resultSet.getFloat("amount"), resultSet.getString("transactionType"), resultSet.getDate("transactionDate")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

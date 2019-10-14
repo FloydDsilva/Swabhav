@@ -133,3 +133,31 @@ e2e/*.map
 .DS_Store/
 
 # End of https://www.gitignore.io/api/angular
+
+# Created by https://www.gitignore.io/api/gradle,java-web
+# Edit at https://www.gitignore.io/?templates=gradle,java-web
+
+### Java-Web ###
+## ignoring target file
+target/
+
+### Gradle ###
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# End of https://www.gitignore.io/api/gradle,java-web

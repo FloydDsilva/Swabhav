@@ -1,8 +1,10 @@
 package com.techlabs.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.techlabs.model.Account;
+import com.techlabs.model.TransactionLog;
 import com.techlabs.repository.BankRepository;
 
 public class BankService {
@@ -22,5 +24,8 @@ public class BankService {
 	}
 	public void withdraw(String name,float amount) throws SQLException {
 		repository.withdraw(name, amount);
+	}
+	public List<TransactionLog> getTransactions(String name) {
+		return repository.getTransactions(name);
 	}
 }
