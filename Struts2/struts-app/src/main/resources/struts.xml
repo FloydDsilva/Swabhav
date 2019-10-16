@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="main" extends="struts-default">
+    <interceptors>
+			<interceptor name="mylogging" 
+				class="com.techlabs.interceptors.LoggingInterceptor">
+			</interceptor>
+			<interceptor-stack name="loggingStack">
+				<interceptor-ref name="mylogging" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loggingStack"></default-interceptor-ref>
+    	<action name="welcome" class="com.techlabs.actions.WelcomeAction">  
+			<result name="success">welcome.jsp</result>  
+		</action> 
+		
+		<action name="browse" class="com.techlabs.actions.BrowseAction">  
+			<result name="success">browse.jsp</result>  
+		</action>
+		
+		<action name="wish" class="com.techlabs.actions.WishAction">  
+			<result name="success">wish.jsp</result>  
+		</action>
+		<action name="wish.do" class="com.techlabs.actions.WishAction" method="wishDo">  
+			<result name="success">wish.jsp</result>  
+		</action>
+		<action name="session" class="com.techlabs.actions.SessionAction">  
+			<result name="success">session.jsp</result>  
+		</action>
+		<action name="login" class="com.techlabs.actions.LoginAction">  
+			<result name="success">welcome.jsp</result>  
+			<result name="input">login.jsp</result>  
+		</action>
+		<action name="registerDo" class="com.techlabs.actions.RegisterAction" method="registerDo">
+		<interceptor-ref name="loggingStack"></interceptor-ref>
+			<result name="success">register.jsp</result>  
+			<result name="input">register.jsp</result>  
+		</action>
+    </package>
+</struts>
