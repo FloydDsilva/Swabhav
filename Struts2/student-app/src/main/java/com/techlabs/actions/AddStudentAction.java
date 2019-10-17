@@ -49,12 +49,6 @@ public class AddStudentAction extends ActionSupport implements ModelDriven<AddSt
 	}
 	
 	public String addDo() {
-		HttpSession session=ServletActionContext.getRequest().getSession(false);  
-        if(session==null || session.getAttribute("userName")==null){  
-            return "login";  
-        }  
-        else{  
-        System.out.println("UserName:"+session.getAttribute("userName"));
 		Student student=new Student();
 		student.setId((UUID.randomUUID()).toString());
 		student.setName(vm.getName());
@@ -62,7 +56,6 @@ public class AddStudentAction extends ActionSupport implements ModelDriven<AddSt
 		student.setRollNo(vm.getRollNo());
 		StudentService.getInstance().addStudent(student);
 		return "success";
-		}  
 		
 	}
 }

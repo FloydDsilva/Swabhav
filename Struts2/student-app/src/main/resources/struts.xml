@@ -4,25 +4,45 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="main" extends="struts-default">
+    <interceptors>
+			<interceptor class="com.techlabs.interceptor.LoginInterceptor"
+				name="loginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+ 		
+
+		<global-results>
+			<result name="login">view/login.jsp</result>
+		</global-results>
+		
+		
     <action name="viewStudents" class="com.techlabs.actions.ViewStudentsAction">  
 			<result name="success">view/viewStudents.jsp</result>  
 		</action>
+	<action name="addStudent" class="com.techlabs.actions.AddStudentLoaderAction">  
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">view/addStudent.jsp</result> 
+		</action>
 	<action name="add.do" class="com.techlabs.actions.AddStudentAction" method="addDo">  
 			<result name="success" type="redirectAction">viewStudents</result>  
-			<result name="input">addStudent.jsp</result>  
-			<result name="login">login.jsp</result>  
+			<result name="input">view/addStudent.jsp</result>  
+			  
 		</action>
 		<action name="editStudent" class="com.techlabs.actions.EditStudentAction">  
+			<interceptor-ref name="loginStack"></interceptor-ref>
 			<result name="success">view/editStudent.jsp</result>
-			<result name="login">view/login.jsp</result>
 		</action>
 		<action name="edit.do" class="com.techlabs.actions.UpdateStudentAction" method="updateDo">  
 			<result name="success" type="redirectAction">viewStudents</result>  
 			<result name="input">editStudent.jsp</result>  
 		</action>
 		<action name="deleteStudent" class="com.techlabs.actions.DeleteStudentAction">  
-			<result name="success" type="redirectAction">viewStudents</result>  
-			<result name="login">view/login.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success" type="redirectAction">viewStudents</result>
 		</action>
 		<action name="login" class="com.techlabs.actions.LoginAction">  
 			<result name="success" type="redirectAction">viewStudents</result>  

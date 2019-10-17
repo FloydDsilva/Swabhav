@@ -20,14 +20,9 @@ public class DeleteStudentAction implements Action {
 
 	@Override
 	public String execute() throws Exception {
-		HttpSession session=ServletActionContext.getRequest().getSession(false);  
-        if(session==null || session.getAttribute("userName")==null){  
-            return "login";  
-        }  
-        else{  
+		 
 		StudentService.getInstance().deleteStudent(id);
 		return "success";
-        }
 	}
 
 }

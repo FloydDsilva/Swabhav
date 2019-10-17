@@ -33,18 +33,12 @@ public class EditStudentAction implements ModelDriven<EditStudentVM>,Action{
 	
 	@Override
 	public String execute() throws Exception {
-		System.out.println("in exec edit");
-		HttpSession session=ServletActionContext.getRequest().getSession(false);  
-        if(session==null || session.getAttribute("userName")==null){  
-            return "login";  
-        }  
-        else{  
+		 
 		Student student=StudentService.getInstance().fetchStudent(vm.getId());
 		vm.setName(student.getName());
 		vm.setAge(student.getAge());
 		vm.setRollNo(student.getRollNo());
 		return "success";
-        }
 	}
 	
 }
