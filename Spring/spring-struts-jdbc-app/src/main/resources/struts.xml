@@ -3,12 +3,57 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <package name="main" extends="struts-default">
-    <action name="login" class="com.techlabs.action.LoginAction">
+    <package name="main" extends="json-default">
+    <interceptors>
+			<interceptor class="com.techlabs.interceptor.LoginInterceptor"
+				name="loginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+	<global-results>
+			<result name="login">view/login.jsp</result>
+		</global-results>
+	<action name="welcome" class="com.techlabs.action.WelcomeAction">
     <result name="success">/view/welcome.jsp</result>
+    </action>
+    <action name="registration" class="com.techlabs.action.GetRegistrationAction">
+    <result name="success">/view/registration.jsp</result>
+    </action>
+    <action name="registration.do" class="com.techlabs.action.RegistrationAction">
+    <result name="success">/view/welcome.jsp</result>
+    </action>
+	<action name="login" class="com.techlabs.action.GetLoginAction">
+    <result name="success">/view/login.jsp</result>
+    </action>
+    <action name="login.do" class="com.techlabs.action.LoginAction">
+    <result name="success" type="redirectAction">profile</result>
     <result name="input">/view/login.jsp</result>
     <result name="error">/view/login.jsp</result>
     </action>
-    
+    <action name="profile" class="com.techlabs.action.ProfileAction">
+    <interceptor-ref name="loginStack"/>
+    <result name="success">/view/profile.jsp</result>
+    </action>
+    <action name="logout" class="com.techlabs.action.LogoutAction">  
+			<result name="success" type="redirectAction">login</result>  
+	</action>
+	<action name="passbook" class="com.techlabs.action.PassbookAction">
+			<interceptor-ref name="loginStack"/>  
+			<result name="success">/view/passbook.jsp</result>  
+	</action>
+	<action name="transaction" class="com.techlabs.action.GetTransactionAction"> 
+		<interceptor-ref name="loginStack"/> 
+		<result name="success">/view/transaction.jsp</result>  
+	</action>
+	<action name="transaction.do" class="com.techlabs.action.TransactionAction">  
+			<result name="success" type="redirectAction">profile</result>
+			<result name="input">/view/transaction.jsp</result>  
+			<result name="error">/view/transaction.jsp</result>  
+	</action>
+	<action name="passbookDownload" class="com.techlabs.action.PassbookDownloadAction">
+		<result type="json"/>
+	</action>
     </package>
 </struts>
