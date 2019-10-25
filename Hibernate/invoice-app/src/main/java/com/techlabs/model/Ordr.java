@@ -11,16 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Order {
+public class Ordr {
 	@Id
 	private int id;
-	
 	@ManyToOne
 	@JoinColumn
 	private Customer cust;
 	
-//	@OneToMany(mappedBy = "odr",cascade = CascadeType.ALL)
-//	private Set<LineItem> lineItems=new HashSet<LineItem>();
+	@OneToMany(mappedBy = "odr",cascade = CascadeType.ALL)
+	private Set<LineItem> lineItems=new HashSet<LineItem>();
 	
 	public int getId() {
 		return id;
@@ -34,11 +33,11 @@ public class Order {
 	public void setCust(Customer cust) {
 		this.cust = cust;
 	}
-//	public Set<LineItem> getLineItems() {
-//		return lineItems;
-//	}
-//	public void setLineItems(Set<LineItem> lineItems) {
-//		this.lineItems = lineItems;
-//	}
+	public Set<LineItem> getLineItems() {
+		return lineItems;
+	}
+	public void setLineItems(Set<LineItem> lineItems) {
+		this.lineItems = lineItems;
+	}
 	
 }

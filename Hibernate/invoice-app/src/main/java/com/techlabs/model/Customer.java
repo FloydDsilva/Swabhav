@@ -12,11 +12,10 @@ import javax.persistence.OneToMany;
 public class Customer {
 	@Id
 	private int id;
-	
 	private String name;
 	private String location;
 	@OneToMany(mappedBy = "cust",cascade = CascadeType.ALL)
-	private Set<Order> orders=new HashSet<Order>();
+	private Set<Ordr> orders=new HashSet<Ordr>();
 	
 	public int getId() {
 		return id;
@@ -36,10 +35,10 @@ public class Customer {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public Set<Order> getOrders() {
+	public Set<Ordr> getOrders() {
 		return orders;
 	}
-	public void setOrders(Set<Order> orders) {
+	public void setOrders(Set<Ordr> orders) {
 		this.orders = orders;
 	}
 	

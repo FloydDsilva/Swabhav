@@ -22,7 +22,6 @@ public class CandidateCRUD {
 		Criteria cr = session.createCriteria(Candidate.class);
 		List<Candidate> candidates=cr.list();
 		return candidates;
-		
 	}
 	public void update(Session session,int id,String name,float cgpa) {
 		Candidate candidate=(Candidate) session.get(Candidate.class, id);

@@ -14,7 +14,7 @@ public class LineItem {
 	
 	@ManyToOne
 	@JoinColumn
-	private Order odr;
+	private Ordr odr;
 	
 	public int getId() {
 		return id;
@@ -34,10 +34,10 @@ public class LineItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Order getOdr() {
+	public Ordr getOdr() {
 		return odr;
 	}
-	public void setOdr(Order odr) {
+	public void setOdr(Ordr odr) {
 		this.odr = odr;
 	}
 	

@@ -14,7 +14,8 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="format_sql">true</property>
         <mapping class="com.techlabs.model.Customer" />
-        <mapping class="com.techlabs.model.Order" />
+        <mapping class="com.techlabs.model.Ordr" />
+        <mapping class="com.techlabs.model.LineItem" />
         
     </session-factory>
 </hibernate-configuration>
