@@ -55,7 +55,7 @@ public class UpdateStudentAction extends ActionSupport implements ModelDriven<Ed
 	public String updateDo() {
 		System.out.println("adsa");
 		Student studentNew=new Student();
-		studentNew.setId(vm.getId());
+		studentNew.setId(UUID.fromString(vm.getId()));
 		studentNew.setName(vm.getName());
 		studentNew.setAge(vm.getAge());
 		studentNew.setRollNo(vm.getRollNo());

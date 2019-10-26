@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -36,10 +38,14 @@ public class StudentRepository {
 	
 	
 	
-	public Student fetchStudent(UUID id) {
+	public Student fetchStudent(String id) {
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
-		Student student=(Student) session.get(Student.class, id);
+		Student student=(Student) session.get(Student.class, UUID.fromString(id));
+//		Query query=session.createQuery("from Student where id =:id");
+//		query.setParameter("id", uuid);
+//		Student student=(Student) query.uniqueResult();
+		System.out.println("New Student"+student);
 		transaction.commit();
 		session.close();
 		return student;
@@ -70,8 +76,17 @@ public class StudentRepository {
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
 		System.out.println(studentId);
+		System.out.println(UUID.fromString(studentId));
 		Student student=(Student) session.get(Student.class, UUID.fromString(studentId));
-		System.out.println(student);
+		
+//		Query query=session.createQuery("from Student where id =:id");
+//		query.setParameter("id", UUID.fromString(studentId));
+//		Student student=(Student) query.uniqueResult();
+//		Criteria cr = session.createCriteria(Student.class);
+//		cr.add(Restrictions.eq("id", UUID.fromString(studentId)));
+//		Student student= (Student) cr.uniqueResult();
+		
+		System.out.println("New Student"+student);
 		session.delete(student);
 		System.out.println("Deleted");
 		transaction.commit();

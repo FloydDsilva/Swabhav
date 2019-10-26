@@ -3,7 +3,7 @@ package com.techlabs.viewmodel;
 import java.util.UUID;
 
 public class EditStudentVM {
-	private static UUID id;
+	private static String id;
 	private String name;
 	private int rollNo,age;
 	public String getName() {
@@ -24,10 +24,10 @@ public class EditStudentVM {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 public class Student {
@@ -16,6 +17,7 @@ public class Student {
 	@GenericGenerator(
 			name = "UUID",
 			strategy = "org.hibernate.id.UUIDGenerator")
+	@Type(type = "uuid-char")
 	private UUID id;
 	private String name;
 	private int rollNo;

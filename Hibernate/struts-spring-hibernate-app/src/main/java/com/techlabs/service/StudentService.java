@@ -31,7 +31,7 @@ public class StudentService {
 		
 	}
 
-	public Student fetchStudent(UUID uuid) {
+	public Student fetchStudent(String uuid) {
 		return repository.fetchStudent(uuid);
 	}
 
