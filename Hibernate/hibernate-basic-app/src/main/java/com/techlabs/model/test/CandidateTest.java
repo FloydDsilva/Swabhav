@@ -16,7 +16,7 @@ public class CandidateTest {
 		System.out.println(factory.getClass());
 		Candidate candidate=new Candidate();
 		//candidate.setId(1);
-		candidate.setName("Sachin");
+		candidate.setName("Raj");
 		candidate.setCgpa(5.9f);
 		Candidate candidate2=new Candidate();
 		//candidate2.setId(2);
@@ -24,15 +24,15 @@ public class CandidateTest {
 		candidate2.setCgpa(7.9f);
 		Session session=factory.openSession();
 		Transaction transaction=session.beginTransaction();
-		session.save(candidate);
-		session.save(candidate2);
+		//session.save(candidate);
+		//session.save(candidate2);
 		System.out.println("Read All:");
 		List<Candidate> candidates=new CandidateCRUD().readAll(session);
 		printAll(candidates);
 		Candidate candidate3=new CandidateCRUD().readById(session, 2);
 		System.out.println("Read By Id:"+candidate3);
 		new CandidateCRUD().update(session, 3, "Yuvraj", 6.2f);
-		new CandidateCRUD().deleted(session, 5);
+		//new CandidateCRUD().deleted(session, 5);
 		List<Candidate> candidates2=new CandidateCRUD().readAll(session);
 		printAll(candidates2);
 		

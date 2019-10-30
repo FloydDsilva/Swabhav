@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Index<%//response.sendRedirect("welcome"); %>
+Index<%response.sendRedirect("welcome"); %>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="assets/bootstrap-3.4.1-dist/css/bootstrap.css">
+<script src="assets/jquery-3.4.1.js"></script>
 <title>Registration</title>
 <style>
 
@@ -24,6 +25,35 @@ label {
 }
 
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#checkUserName").blur(function(){
+			$.ajax({
+				url:"checkAvailibility.action",
+				data:"name="+$(this).val(),
+				dataType:"json",
+				success:function(data){
+					var classString="glyphicon glyphicon-ok";
+					if(data.validName){
+						$("#notify").removeClass();
+						$("#notify").addClass("glyphicon glyphicon-ok");
+						$("#notify").html("<b style='color:green'> Account Name is Valid</b>");
+					}
+					if(!data.validName){
+						$("#notify").removeClass();
+						$("#notify").addClass("glyphicon glyphicon-remove");
+						$("#notify").html("<b style='color:red'> Account Name is Invalid</b>");
+					}
+					console.log(data);
+					console.log("success"+data.validName);
+				},
+				error:function(){
+					alert("Error");
+				}
+			})
+		})
+	});
+</script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -45,7 +75,7 @@ label {
 				<s:form method="post" action="registration.do">
 					<div class="form-inline">
 						<s:textfield name="accName" class="form-control"
-							label="Name "></s:textfield>
+							label="Name " id="checkUserName"></s:textfield><p id="notify"></p>
 					</div>
 					<div class="form-inline">
 						<s:textfield name="accPassword" type="password" class="form-control"

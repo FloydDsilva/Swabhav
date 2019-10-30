@@ -30,4 +30,5 @@ public class BankService {
 	public List<TransactionLog> getTransactions(String name) {
 		return repository.getTransactions(name);
 	}
+	
 }

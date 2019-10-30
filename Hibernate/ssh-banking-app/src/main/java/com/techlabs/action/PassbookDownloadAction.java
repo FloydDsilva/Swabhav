@@ -1,5 +1,6 @@
 package com.techlabs.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,22 +10,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Action;
 import com.techlabs.model.TransactionLog;
+import com.techlabs.passbook.Passbook;
 import com.techlabs.service.BankService;
 
 public class PassbookDownloadAction implements Action {
 	@Autowired
 	private BankService bankService;
-	private List<TransactionLog> transactions;
+	private List<Passbook> transactions=new ArrayList<Passbook>();
 	@Override
 	public String execute() throws Exception {
 		HttpSession session=ServletActionContext.getRequest().getSession(false);
-		transactions=bankService.getTransactions((String)session.getAttribute("name"));
+		List<TransactionLog> completeTransactions=bankService.getTransactions((String)session.getAttribute("name"));
+		for(TransactionLog transaction:completeTransactions) {
+			Passbook passbook=new Passbook();
+			passbook.setAmount(transaction.getAmount());
+			passbook.setTransactionDate(transaction.getTransactionDate());
+			passbook.setTransactionType(transaction.getTransactionType());
+			transactions.add(passbook);
+		}
 		return "success";
 	}
-	public List<TransactionLog> getTransactions() {
+	public List<Passbook> getTransactions() {
 		return transactions;
 	}
-	public void setTransactions(List<TransactionLog> transactions) {
+	public void setTransactions(List<Passbook> transactions) {
 		this.transactions = transactions;
 	}
 	

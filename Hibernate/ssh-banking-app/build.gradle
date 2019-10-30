@@ -77,7 +77,8 @@ compile group: 'com.jgeppert.struts2.jquery', name: 'struts2-jquery-plugin', ver
   compile group: 'commons-io', name: 'commons-io', version: '2.4'
  
    
-   
+  compile group: 'org.apache.struts', name: 'struts2-json-plugin', version: '2.5.12'
+  compile group: 'org.webjars', name: 'jquery', version: '3.3.1'
    
 }
 

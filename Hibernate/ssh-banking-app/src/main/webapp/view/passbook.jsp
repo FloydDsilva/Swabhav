@@ -18,19 +18,17 @@
 		<table class="table table-hover">
 			<tr>
 			<thead>
-				<th>Name</th>
-				<th>Amount</th>
-				<th>Transaction</th>
 				<th>Date</th>
+				<th>Transaction</th>
+				<th>Amount</th>
 			</thead>
 			</tr>
 			<tbody>
 		<s:iterator value="transactions">
 			<tr>
-				<td><s:property value="name"/></td>
-				<td><s:property value="amount"/></td>
-				<td><s:property value="transactionType"/></td>
 				<td><s:property value="transactionDate"/></td>
+				<td><s:property value="transactionType"/></td>
+				<td><s:property value="amount"/></td>
 		</tr>
 		</s:iterator>
 		</tbody>

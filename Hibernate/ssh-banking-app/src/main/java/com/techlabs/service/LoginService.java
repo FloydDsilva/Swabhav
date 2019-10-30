@@ -12,4 +12,7 @@ public class LoginService {
 	public boolean isValidUser(String username,String password) {
 		return (bankRepository.getPassword(username).equals(password))?true:false;
 	}
+	public boolean isValidName(String name) {
+		return bankRepository.isValidName(name);
+	}
 }

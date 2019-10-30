@@ -52,4 +52,9 @@ private RegistrationVM regVM;
 		}    		
 		
 	}
+	
+	public String validateName() {
+		System.out.println("in Function");
+		return "success";
+	}
 }

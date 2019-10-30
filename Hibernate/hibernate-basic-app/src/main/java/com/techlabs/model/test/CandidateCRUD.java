@@ -12,10 +12,10 @@ import com.techlabs.model.Candidate;
 
 public class CandidateCRUD {
 	public Candidate readById(Session session,int id) {
-//		Criteria cr = session.createCriteria(Candidate.class);
-//		cr.add(Restrictions.eq("id", id));
-//		Candidate candidate= (Candidate) cr.list().get(0);
-		Candidate candidate=(Candidate) session.get(Candidate.class, id);
+		Criteria cr = session.createCriteria(Candidate.class);
+		cr.add(Restrictions.eq("id", id));
+		Candidate candidate= (Candidate) cr.uniqueResult();
+		//Candidate candidate=(Candidate) session.get(Candidate.class, id);
 		return candidate;
 	}
 	public List<Candidate> readAll(Session session) {
