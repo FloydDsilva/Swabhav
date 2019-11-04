@@ -17,7 +17,7 @@
 		</global-results>
 	<action name="welcome" class="com.techlabs.action.WelcomeAction">
     <result name="success">/view/welcome.jsp</result>
-    
+    <result name="logged" type="redirectAction">profile</result>
     </action>
     <action name="registration" class="com.techlabs.action.GetRegistrationAction">
     <result name="success">/view/registration.jsp</result>

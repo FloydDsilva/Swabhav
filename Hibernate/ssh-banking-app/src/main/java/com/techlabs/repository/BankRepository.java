@@ -26,8 +26,6 @@ import com.techlabs.model.TransactionLog;
 
 @Repository
 public class BankRepository {
-	private Connection connection;
-	private PreparedStatement preparedStatement;
 	@Autowired
 	private SessionFactory sessionFactory;
 	public BankRepository() {
@@ -87,6 +85,7 @@ public class BankRepository {
 		session.close();
 		return balance;
 	}
+	
 	public void deposit(String name,float amount) throws SQLException {
 		Session session =sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
@@ -109,6 +108,7 @@ public class BankRepository {
 		session.close();		
 		System.out.println("Deposit Success");
 	}
+	
 	public void withdraw(String name,float amount) throws SQLException {
 		Session session =sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
@@ -131,6 +131,7 @@ public class BankRepository {
 		session.close();		
 		System.out.println("Withdraw Success");
 	}
+	
 	public List<TransactionLog> getTransactions(String name) {
 		List<TransactionLog> transactions=new ArrayList<TransactionLog>();
 		
@@ -150,6 +151,7 @@ public class BankRepository {
 		
 		return transactions;
 	}
+	
 	public boolean isValidName(String name) {
 		boolean isValid=true;
 		Session session =sessionFactory.openSession();
@@ -164,4 +166,5 @@ public class BankRepository {
 		session.close();
 		return isValid;
 	}
+	
 }
