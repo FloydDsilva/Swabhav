@@ -13,13 +13,10 @@ public class WelcomeAction implements Action {
 	@Autowired
 	private BookService bookService;
 	private List<Book> books;
-	
+	private int num=0;
 	@Override
 	public String execute() throws Exception {
 		books=bookService.getBooks();
-		for(Book book:books) {
-			System.out.println(book);
-		}
 		return "success";
 	}
 
@@ -30,6 +27,18 @@ public class WelcomeAction implements Action {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+
+	public int getNum() {
+		int size=getBooks().size();
+		int limit=(size>3)?2:(size-1);
+		System.out.println(limit);
+		return limit;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
 	
 	
 }

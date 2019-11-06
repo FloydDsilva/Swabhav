@@ -3,9 +3,53 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <package name="main" extends="struts-default">
-    <action name="welcome" class="com.techlabs.action.WelcomeAction">
-    <result name="success">view/welcome.jsp</result>
-    </action>
+    <package name="main" extends="json-default">
+     	
+     	<interceptors>
+			<interceptor name="loginInterceptor" class="com.techlabs.interceptor.LoginInterceptor"/>
+			<interceptor-stack name="loginStack">
+			<interceptor-ref name="loginInterceptor"/>
+ 			<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+ 		</interceptors>
+
+		<global-results>
+			<result name="login">view/login.jsp</result>
+		</global-results>
+		
+    	<action name="welcome" class="com.techlabs.action.WelcomeAction">
+    		<result name="success">view/welcome.jsp</result>
+    	</action>
+    	<action name="Image" class="com.techlabs.action.RetrieveImageAction">
+        	<result name="success">view/welcome.jsp</result>
+    	</action>
+    	<action name="bookInfo" class="com.techlabs.action.BookInfoAction">
+        	<result name="success">view/bookInfo.jsp</result>
+    	</action>
+    	<action name="register" class="com.techlabs.action.RegistrationLoaderAction">
+         	<result name="success">view/registration.jsp</result>
+        </action>
+        
+        <action name="register.do" class="com.techlabs.action.RegistrationAction">
+         		<result name="success" type="redirectAction">welcome</result>
+         		<result name="input">/view/registration.jsp</result>
+        </action>
+        
+         <action name="checkAvailability" class="com.techlabs.action.ValidateUsername">
+			<result name="success" type="json"/>
+	     </action>
+	     
+	     <action name="login" class="com.techlabs.action.LoginLoaderAction">
+         	<result name="success">view/login.jsp</result>
+         </action>
+          
+          <action name="logout" class="com.techlabs.action.LogoutAction">
+			<result name="success" type="redirectAction">welcome</result>
+		 </action>
+    	
+         <action name="login.do" class="com.techlabs.action.LoginAction">
+         	<result name="success" type="redirectAction">welcome</result>
+         	<result name="input">/view/login.jsp</result>
+         </action>
     </package>
 </struts>
