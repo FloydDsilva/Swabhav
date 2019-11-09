@@ -20,12 +20,29 @@
     	<action name="welcome" class="com.techlabs.action.WelcomeAction">
     		<result name="success">view/welcome.jsp</result>
     	</action>
-    	<action name="Image" class="com.techlabs.action.RetrieveImageAction">
-        	<result name="success">view/welcome.jsp</result>
-    	</action>
     	<action name="bookInfo" class="com.techlabs.action.BookInfoAction">
         	<result name="success">view/bookInfo.jsp</result>
     	</action>
+    	<action name="bookCategory" class="com.techlabs.action.BookCategoryAction">
+        	<result name="success">view/bookCategory.jsp</result>
+    	</action>
+    	<action name="addToCart" class="com.techlabs.action.AddToCartAction">
+        	<result name="success" type="redirectAction">welcome</result>
+    	</action>
+    	
+    	<action name="addBook" class="com.techlabs.action.AddBookLoaderAction">
+         <result name="success">view/addBook.jsp</result>
+    </action>
+   
+    <action name="addBook.do" class="com.techlabs.action.AddBookAction">
+         <result name="success" type="redirectAction">addBook</result>
+         <result name="input">view/addBook.jsp</result>
+    </action>
+    	
+    	<action name="viewProfile" class="com.techlabs.action.ViewProfileAction">
+         	<result name="success">view/viewProfile.jsp</result>
+        </action>
+    	
     	<action name="register" class="com.techlabs.action.RegistrationLoaderAction">
          	<result name="success">view/registration.jsp</result>
         </action>

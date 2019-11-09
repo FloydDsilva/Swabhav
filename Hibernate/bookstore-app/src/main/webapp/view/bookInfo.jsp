@@ -13,13 +13,13 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-6">
-			<img width="90%" style="height:80vh" src="<s:url value='Image.action?id='/><s:property value='id' />">
+			<img width="90%" style="height:80vh" src="<s:property value='book.image'/>">
 		</div>
 		<div class="col-xs-6" style="margin-top:100px">
 			<h3><b>Name:</b><s:property value="book.bookName"/></h3><br>
 			<h4><b>Category:</b><s:property value="book.category"/></h4><br>
 			<h4><b>Price:</b><s:property value="book.price"/></h4><br>
-			<h4><a class="btn btn-success">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></a></h4>
+			<h4><a class="btn btn-success" href="addToCart?bookId=<s:property value='id' />">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></a></h4>
 		</div>
 	</div>
 	

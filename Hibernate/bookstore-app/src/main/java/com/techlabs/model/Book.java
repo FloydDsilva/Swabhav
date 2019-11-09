@@ -1,13 +1,25 @@
 package com.techlabs.model;
 
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 @Entity
 public class Book {
@@ -22,7 +34,19 @@ public class Book {
 	private String category;
 	private int quantity;
 	private float price;
-	private Blob image;
+	@Column(columnDefinition = "LONGTEXT")
+	private String image;
+	
+	@ManyToMany(mappedBy = "books",fetch = FetchType.EAGER)
+	private List<Cart> carts=new ArrayList<Cart>();
+	//private Set<Cart> carts=new HashSet<Cart>();
+	public List<Cart> getCarts() {
+		return carts;
+	}
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+	
 	public UUID getId() {
 		return id;
 	}
@@ -53,12 +77,13 @@ public class Book {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
+	
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", bookName=" + bookName + ", category=" + category + ", quantity=" + quantity

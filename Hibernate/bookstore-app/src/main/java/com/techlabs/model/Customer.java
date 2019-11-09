@@ -2,10 +2,13 @@ package com.techlabs.model;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -29,7 +32,8 @@ public class Customer {
 	private String gender;
 	private long mobileNumber;
 	private String location;
-	
+	@OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+	private Cart cart;
 	public UUID getId() {
 		return id;
 	}
@@ -77,6 +81,12 @@ public class Customer {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 }

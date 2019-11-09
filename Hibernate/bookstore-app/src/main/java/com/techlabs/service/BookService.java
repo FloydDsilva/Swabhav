@@ -17,10 +17,6 @@ public class BookService {
 	public List<Book> getBooks(){
 		return bookRepository.getBooks();
 	}
-
-	public Blob getImage(String id) {
-		return bookRepository.getImage(id);
-	}
 	
 	public Book getBookById(String id) {
 		return bookRepository.getBookById(id);
@@ -28,5 +24,9 @@ public class BookService {
 	
 	public void addCustomer(String username, String password, String email, int age, String gender, long mobileNumber, String location) {
 		bookRepository.addCustomer(username, password, email, age, gender, mobileNumber, location);
+	}
+	
+	public List<Book> getBookByCategory(String category) {
+		return bookRepository.getBookByCategory(category);
 	}
 }
